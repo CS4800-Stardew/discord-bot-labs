@@ -23,6 +23,11 @@ app.get("/getHolyGrail", (req, res)=>{
    res.send("MontyPython");
 });
 
+app.get("/getGame", (req, res)=>{
+   //Sends "Assassin's Creed Origins" response when a GET request is made to "/getGame"
+   res.send("Assassin's Creed Origins");
+});
+
 
 // Start Express server on port 5000
 app.listen(5000,()=>console.log("app is running"));
