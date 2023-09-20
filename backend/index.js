@@ -23,6 +23,10 @@ app.get("/getHolyGrail", (req, res)=>{
    res.send("MontyPython");
 });
 
+app.get("/getTest", (req, res)=>{
+    //Sends "This is a test." response when a GET request is made to "/getTest"
+    res.send("This is a test.");
+ });
 
 // Start Express server on port 5000
 app.listen(5000,()=>console.log("app is running"));
