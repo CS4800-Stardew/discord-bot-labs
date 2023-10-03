@@ -1,3 +1,3 @@
 @ECHO OFF
-npm start
+npm i & npm start
 exit

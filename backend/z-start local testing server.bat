@@ -1,3 +1,3 @@
 @ECHO OFF
-nodemon start
+npm i & nodemon start
 exit
