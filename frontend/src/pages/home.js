@@ -9,7 +9,7 @@ import { Article } from '@mui/icons-material';
 
 function Home(){
     return (
-        //container to hold information (will need to play with/change later)
+        //container to hold information (will need to play with/change later), button as test implementation for MUI library
         <Container maxWidth="md">
 
           <Typography variant="h2" align="center" gutterBottom>
@@ -30,7 +30,6 @@ function Home(){
             Links to other parts of site
           </Typography>
 
-        //test component with functionality (button that links to Discord API website)
           <Button
             variant="contained"
             color="primary"
@@ -45,5 +44,5 @@ function Home(){
         </Container>
       );
     }
-    
+
 export default Home;
