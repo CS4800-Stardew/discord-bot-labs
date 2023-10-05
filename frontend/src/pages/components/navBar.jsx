@@ -1,7 +1,5 @@
-// library to use React Components
-import React from "react";
-// library for dynamic routing
-import { Link, NavLink } from "react-router-dom";
+import React from "react"; // library to use React Components
+import { Link, NavLink } from "react-router-dom"; // library for dynamic routing
 
 //Component for website navigation bar
 const NavBar = ({ user }) => {

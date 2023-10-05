@@ -1,14 +1,13 @@
-// library to use React Components
-import React, {useEffect, useState} from 'react'
-// library for making HTTP requests with backend
-import Axios from "axios"
-// library for dynamic routing
-import { Route, Routes } from 'react-router-dom'
+import React, {useEffect, useState} from 'react' // library to use React Components
+import Axios from "axios" // library for making HTTP requests with backend
+import { Route, Routes } from 'react-router-dom' // library for dynamic routing
 
 //imports from own components
 import NavBar from './pages/components/navBar'
 import Home from './pages/home'
 import BotBuilder from './pages/botBuilder'
+import LoginForm from './pages/loginForm'
+import RegisterForm from './pages/registerForm'
 
 const App = () => {
   // Creating state variable "data" to hold data fetched from the backend
@@ -36,6 +35,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/bot-builder" element={<BotBuilder />}/>
+          <Route path='/login' element={<LoginForm/>}/>
+          <Route path='/register' element={<RegisterForm/>}/>
         </Routes>
       </main>
     </React.Fragment>
