@@ -1,48 +1,64 @@
 //Temporary, change code below later
 
-//importing react library for react components
 import React from 'react';
-
-//importing MUI library for user interface components
-import { Container, Typography, Button } from '@mui/material';
+import { Container, Typography, Button, Grid } from '@mui/material';
 import { Article } from '@mui/icons-material';
 
-function Home(){
-    return (
-        //container to hold information (will need to play with/change later), button as test implementation for MUI library
-        <Container maxWidth="md">
+// Header component
+function Header() {
+  return (
+    <Typography variant="h2" align="center" gutterBottom>
+      Home
+    </Typography>
+  );
+}
 
-          <Typography variant="h2" align="center" gutterBottom>
-            Home
-          </Typography>
+// Main content component
+function MainContent() {
+  return (
+    <Typography variant="body1" align="center" paragraph>
+      Under Construction!
+    </Typography>
+  );
+}
 
-          <Typography variant="body1" align="center" paragraph>
-            Under Construction!
-            <br />
-            Future Plans: 
-            <br />
-            Container Block to separate sections
-            <br />
-            Logo - Images
-            <br />
-            Get Started Button
-            <br />
-            Links to other parts of site
-          </Typography>
+// Button component
+function CustomButton({ label, href }) {
+  return (
+    <Button
+      variant="contained"
+      color="primary"
+      startIcon={<Article />}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {label}
+    </Button>
+  );
+}
 
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<Article />}
-            href="https://discord.com/developers/docs/reference"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View the Discord API Documentation
-          </Button>
-
-        </Container>
-      );
-    }
+function Home() {
+  return (
+    <Container maxWidth="md">
+      <Header />
+      <MainContent />
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item>
+          <CustomButton
+            label="Start with Account"
+            href=""
+          />
+        </Grid>
+        <Grid item>
+          <CustomButton
+            label="Start without Account"
+            href=""
+          />
+        </Grid>
+      </Grid>
+    </Container>
+  );
+}
 
 export default Home;
