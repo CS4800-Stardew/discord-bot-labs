@@ -1,9 +1,9 @@
 // defines Mongoose schema and model for user data, as well as validation functions for user objects
 
-const config = require("config"); // 'config' module for configuration settings
-const jwt = require("jsonwebtoken"); // library for generating JSON Web Tokens
-const Joi = require("joi"); // library for data validation
-const mongoose = require("mongoose"); // library for defining schemas and models
+import config from 'config';
+import jwt from "jsonwebtoken"; // library for generating JSON Web Tokens
+import Joi from "joi"; // library for data validation
+import mongoose from "mongoose"; // library for defining schemas and models
 
 // Mongoose schema for user data
 const userSchema = new mongoose.Schema({
@@ -67,5 +67,4 @@ function validateUser(user) {
   return Joi.validate(user, schema);
 }
 
-exports.User = User;
-exports.validate = validateUser;
+export {User, validateUser};
