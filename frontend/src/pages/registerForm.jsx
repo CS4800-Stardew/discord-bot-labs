@@ -5,6 +5,7 @@ import Joi from "joi-browser"; // library for data validation
 import Form from "./components/common/form";
 import * as userService from "../services/userService";
 import auth from "../services/authService";
+import { NavLink } from "react-router-dom"; // library for dynamic routing
 
 class RegisterForm extends Form {
   state = {
@@ -37,14 +38,15 @@ class RegisterForm extends Form {
   // Render registration form
   render() {
     return (
-      <div>
+      <div className="auth-container">
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
+          {this.renderInput("email", "Email")}
           {this.renderInput("username", "Username")}
           {this.renderInput("password", "Password", "password")}
-          {this.renderInput("name", "Name")}
           {this.renderButton("Register")}
         </form>
+        <NavLink className="auth-redirect" to="/login">Already have an account? Click here to login!</NavLink>
       </div>
     );
   }

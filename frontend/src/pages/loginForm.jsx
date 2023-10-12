@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom"; // 'Navigate' for redirection
 import Joi from "joi-browser"; // library for data validation
 import Form from "./components/common/form";
 import auth from "../services/authService";
+import { NavLink } from "react-router-dom"; // library for dynamic routing
 
 class LoginForm extends Form {
   state = {
@@ -41,13 +42,14 @@ class LoginForm extends Form {
     if (auth.getCurrentUser()) return <Navigate to="/" />;
 
     return (
-      <div>
+      <div className="auth-container">
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username")}
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Login")}
         </form>
+        <NavLink className="auth-redirect" to="/register">Not signed in? Click here to register now!</NavLink>
       </div>
     );
   }
