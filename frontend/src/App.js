@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom' // library for dynamic routing
 
 //imports from own components
 import NavBar from './pages/components/navBar'
+import StickyFooter from './pages/components/stickyFooter';
 import Home from './pages/home'
 import BotBuilder from './pages/botBuilder'
 import LoginForm from './pages/loginForm'
@@ -39,6 +40,7 @@ const App = () => {
           <Route path='/register' element={<RegisterForm/>}/>
         </Routes>
       </main>
+      <StickyFooter/>
     </React.Fragment>
   )
 }
