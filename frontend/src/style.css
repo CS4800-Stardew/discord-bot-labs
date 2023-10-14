@@ -11,11 +11,35 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: auto;
 }
 
 .container {
   text-align: center;
   height: 100vh;
+}
+
+/* CardArray style section (for home page) */
+.card-container {
+  width: 31%;
+  
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 50px;
+}
+
+.card-title {
+  text-align: center;
+  padding: 10px;
+}
+
+.card-description {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.card-description li {
+  margin-bottom: 5px;
 }
 
 

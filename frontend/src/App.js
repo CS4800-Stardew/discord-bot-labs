@@ -40,7 +40,7 @@ const App = () => {
           <Route path='/register' element={<RegisterForm/>}/>
         </Routes>
       </main>
-      <StickyFooter/>
+    <StickyFooter/>
     </React.Fragment>
   )
 }
