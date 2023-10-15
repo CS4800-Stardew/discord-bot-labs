@@ -3,10 +3,11 @@ import express from 'express';
 import config from 'config';
 import Joi from 'joi';
 import joiObjectId from 'joi-objectid';
+import error from "./middleware/error.js";
 
 //route imports
-import login from './routes/login.js';
-import register from './routes/register.js';
+import auth from './routes/auth.js';
+import users from './routes/users.js';
 
 // enables CORS for allowing cross-origin HTTP requests 
 // enables communication between different domains
@@ -17,9 +18,9 @@ export function enableCors(app) {
 // sets up routes for Express
 export function setRoutes(app) {
   app.use(express.json());
-  app.use('/api/login', login);
-  app.use('/api/register', register);
-  //app.use(error);
+  app.use('/api/auth', auth);
+  app.use('/api/users', users);
+  app.use(error);
 }
 
 // checking if jwtPrivateKey is in the config settings, throw error if not
