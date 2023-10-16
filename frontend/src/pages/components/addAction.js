@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function TestAction() {
+function AddAction() {
     const [actionList, setActionList] = useState([{ action: "" }]);
 
     const handleServiceChange = (e, index) => {
@@ -21,57 +21,63 @@ function TestAction() {
     };
 
     return (
-        <form className="App" autoComplete="off">
-            <div className="form-field">
-                {actionList.map((singleService, index) => (
-                    <div key={index} className="actions">
-                        <div className="first-division">
-                            <input
-                                name="action"
-                                type="text"
-                                id="action"
-                                value={singleService.service}
-                                onChange={(e) => handleServiceChange(e, index)}
-                                required
-                            />
-                            {actionList.length - 1 === index && actionList.length < 10 && (
-                                <button
-                                    type="button"
-                                    onClick={handleAddAction}
-                                    className="add-btn"
-                                >
-                                    <span>Add Action</span>
-                                </button>
-                            )}
-                        </div>
-                        <div className="second-division">
-                            {actionList.length !== 1 && (
-                                <button
-                                    type="button"
-                                    onClick={() => handleActionRemove(index)}
-                                    className="remove-btn"
-                                >
-                                    <span>Remove</span>
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                ))}
-            </div>
-            {
-                /*
-            <div className="output">
-                <h2>Output</h2>
-                {actionList &&
-                    actionList.map((singleService, index) => (
-                        <ul key={index}>
-                            {singleService.service && <li>{singleService.service}</li>}
-                        </ul>
-                    ))}
-            </div>
-                 */}
-        </form>
+        <div className="form-field px-5">
+            {actionList.map((singleService, index) => (
+                <div key={index} className="actions btn-toolbar flex-row my-3" role="toolbar" >
+                    {actionList.length !== 1 && (
+                        <button
+                            type="button"
+                            onClick={() => handleActionRemove(index)}
+                            className="remove-btn me-3 btn btn-danger">
+                            Remove
+                        </button>
+                    )}
+                    <select
+                        className="select picker form-control w-75 me-3"
+                        name="action"
+                        type="select"
+                        id="action"
+                        value={singleService.service}
+                        onChange={(e) => handleServiceChange(e, index)}
+                        required>
+                        <option selected>Select an Action</option>
+                        <option value="1">Reply to Slash Channel</option>
+                        <option value="2">Send Channel Message</option>
+                        <option value="3">Send Direct Message</option>
+                        <option value="4">Add Role</option>
+                        <option value="5">Remove Role</option>
+                        <option value="6">Delete Message</option>
+                        <option value="7">Kick</option>
+                        <option value="8">Purge</option>
+                        <option value="9">Ban</option>
+                        <option value="10">Unban</option>
+                    </select>
+
+                    {actionList.length - 1 === index && actionList.length < 10 && (
+                        <button
+                            type="button"
+                            onClick={handleAddAction}
+                            className="add-btn btn btn-primary">
+                            Add Action
+                        </button>
+                    )}
+                </div>
+            ))}
+        </div>
     );
+
+    {
+        /*
+    <div className="output">
+        <h2>Output</h2>
+        {actionList &&
+            actionList.map((singleService, index) => (
+                <ul key={index}>
+                    {singleService.service && <li>{singleService.service}</li>}
+                </ul>
+            ))}
+    </div>
+         */}
 }
 
-export default TestAction
+export default AddAction
