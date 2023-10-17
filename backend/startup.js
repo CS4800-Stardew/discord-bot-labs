@@ -4,6 +4,7 @@ import config from 'config';
 import Joi from 'joi';
 import joiObjectId from 'joi-objectid';
 import error from "./middleware/error.js";
+import mongoose from 'mongoose';
 
 //route imports
 import auth from './routes/auth.js';
@@ -21,6 +22,14 @@ export function setRoutes(app) {
   app.use('/api/auth', auth);
   app.use('/api/users', users);
   app.use(error);
+}
+
+// connecting to the MongoDB database
+export function connectToDatabase() {
+  const db = config.get('db'); // Get database connection string from config
+  mongoose.connect(db, {useNewUrlParser:true, useUnifiedTopology: true})
+    .then(() => console.log(`Connected to ${db}...`))
+    .catch((err) => {console.error(`Database connection error: ${err.message}`)});
 }
 
 // checking if jwtPrivateKey is in the config settings, throw error if not

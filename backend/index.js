@@ -5,6 +5,7 @@ const app=express(); // Creating instance of Express application
 
 startup.enableCors(app);
 startup.setRoutes(app);
+startup.connectToDatabase();
 startup.validateConfig();
 startup.extendJoiValidation();
 
