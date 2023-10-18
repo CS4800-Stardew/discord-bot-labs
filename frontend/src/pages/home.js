@@ -9,12 +9,12 @@
 
 //look into issues with relative links
 
-import React, { useRef } from 'react';
+import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Link } from 'react-router-dom';
 
-import { Container, Typography, Button, Grid, Card, CardMedia, CardContent, CardActions } from '@mui/material';
+import { Container, Button, } from '@mui/material';
 import Box from '@mui/system/Box'; 
 import { PlayArrowSharp, Article, QuizSharp } from '@mui/icons-material';
 
