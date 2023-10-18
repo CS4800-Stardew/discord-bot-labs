@@ -9,15 +9,15 @@ import { NavLink } from "react-router-dom"; // library for dynamic routing
 
 class RegisterForm extends Form {
   state = {
-    data: { username: "", password: "", name: "" }, // initialize form data
+    data: { email: "", username: "", password: "" }, // initialize form data
     errors: {}, // initialize form validation errors
   };
 
   // Joi schema for form validation
   schema = {
-    username: Joi.string().required().email().label("Username"),
+    email: Joi.string().required().email().label("Email"),
+    username: Joi.string().required().min(2).max(50).label("Username"),
     password: Joi.string().required().min(5).label("Password"),
-    name: Joi.string().required().label("Name"),
   };
 
   // handling form submission
@@ -46,7 +46,9 @@ class RegisterForm extends Form {
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Register")}
         </form>
-        <NavLink className="auth-redirect" to="/login">Already have an account? Click here to login!</NavLink>
+        <NavLink className="auth-redirect" to="/login">
+          Already have an account? Click here to login!
+        </NavLink>
       </div>
     );
   }

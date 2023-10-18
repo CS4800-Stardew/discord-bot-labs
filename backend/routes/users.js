@@ -15,8 +15,8 @@ router.get('/me', auth, async (req, res) => {
 // register new user
 router.post('/', async (req, res) => {
   // validate user data using Joi validation
-  const { error } = validateUser(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+   const { error } = validateUser(req.body);
+   if (error) return res.status(400).send(error.details[0].message);
 
   // check if user already exists by email
   let user = await User.findOne({ email: req.body.email });

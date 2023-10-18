@@ -1,6 +1,5 @@
 // tests 'generateAuthToken' method of the User model
-
-const { User } = require('../models/user'); // User model
+const { User, validateUser } = require('../models/user'); // User model
 const jwt = require('jsonwebtoken'); // library for JWT verification
 const config = require('config'); // 'config' for configuration settings
 const mongoose = require('mongoose'); // library for working with object IDs
@@ -25,5 +24,16 @@ describe('user.generateAuthToken', () => {
     
     // Expect that decoded token matches original payload
     expect(decoded).toMatchObject(payload);
+  });
+});
+
+describe('validateUser', () => {
+  it('should return as valid', () => {
+    const newUser = new User({
+      email: 'test@email.com',
+      username: 'hello',
+      password: '12345'
+    })
+    validateUser(newUser);
   });
 });
