@@ -15,9 +15,9 @@ class RegisterForm extends Form {
 
   // Joi schema for form validation
   schema = {
-    email: Joi.string().required().email().label("Email"),
-    username: Joi.string().required().min(2).max(50).label("Username"),
-    password: Joi.string().required().min(5).label("Password"),
+    email: Joi.string().min(5).max(255).required().email().label("Email"),
+    username: Joi.string().min(2).max(50).required().label("Username"),
+    password: Joi.string().min(5).max(255).required().label("Password"),
   };
 
   // handling form submission

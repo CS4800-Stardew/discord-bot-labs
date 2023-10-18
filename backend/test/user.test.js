@@ -1,8 +1,8 @@
-// tests 'generateAuthToken' method of the User model
-const { User, validateUser } = require('../models/user'); // User model
-const jwt = require('jsonwebtoken'); // library for JWT verification
-const config = require('config'); // 'config' for configuration settings
-const mongoose = require('mongoose'); // library for working with object IDs
+import { User, validateUser } from '../models/user'; // User model
+import jwt from 'jsonwebtoken'; // library for JWT verification
+import config from 'config'; // 'config' for configuration settings
+import mongoose from 'mongoose'; // library for working with object IDs
+import Joi from 'joi';
 
 // Describe the test case
 describe('user.generateAuthToken', () => {
@@ -22,7 +22,7 @@ describe('user.generateAuthToken', () => {
     // Verify generated token using JWT library and app's secret key
     const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
     
-    // Expect that decoded token matches original payload
+    // expect that decoded token matches original payload
     expect(decoded).toMatchObject(payload);
   });
 });
@@ -33,7 +33,7 @@ describe('validateUser', () => {
       email: 'test@email.com',
       username: 'hello',
       password: '12345'
-    })
+    });
     validateUser(newUser);
   });
 });

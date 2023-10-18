@@ -63,7 +63,7 @@ function validateUser(user) {
       .max(255)
       .required()
   });
-  console.log("REACHED 2");
+  
   return schema.validate(user);
 }
 

@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
   if (user) return res.status(400).send('User already registered.');
 
   // create new User instance with selected properties from the request body
-  user = new User(_.pick(req.body, ['name', 'email', 'password']));
+  user = new User(_.pick(req.body, ['email', 'username', 'password']));
 
   // generate salt and hash user's password
   const salt = await bcrypt.genSalt(10);
