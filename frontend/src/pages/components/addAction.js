@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {ReplyToSlashChannel, SendChannelMessage} from "./selectedActions";
 
 function AddAction() {
     const [actionList, setActionList] = useState([{ action: "" }]);
@@ -20,6 +21,18 @@ function AddAction() {
         setActionList([...actionList, { action: "" }]);
     };
 
+    const renderContainer = (type) => {
+        switch (type) {
+            case "1":
+                return <ReplyToSlashChannel />;
+            case "2":
+                return <SendChannelMessage />;
+            // Add cases for other action types and corresponding components
+            default:
+                return null;
+        }
+    };
+
     return (
         <div className="form-field px-5">
             {actionList.map((singleService, index) => (
@@ -34,10 +47,10 @@ function AddAction() {
                     )}
                     <select
                         className="select picker form-control w-75 me-3"
-                        name="action"
+                        name="type"
                         type="select"
                         id="action"
-                        value={singleService.service}
+                        value={singleService.type}
                         onChange={(e) => handleServiceChange(e, index)}
                         required>
                         <option selected>Select an Action</option>
@@ -52,7 +65,6 @@ function AddAction() {
                         <option value="9">Ban</option>
                         <option value="10">Unban</option>
                     </select>
-
                     {actionList.length - 1 === index && actionList.length < 10 && (
                         <button
                             type="button"
@@ -61,23 +73,12 @@ function AddAction() {
                             Add Action
                         </button>
                     )}
+
+                    {renderContainer(singleService.type)}
                 </div>
             ))}
         </div>
     );
-
-    {
-        /*
-    <div className="output">
-        <h2>Output</h2>
-        {actionList &&
-            actionList.map((singleService, index) => (
-                <ul key={index}>
-                    {singleService.service && <li>{singleService.service}</li>}
-                </ul>
-            ))}
-    </div>
-         */}
 }
 
 export default AddAction

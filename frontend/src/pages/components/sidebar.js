@@ -1,29 +1,37 @@
 import React, { useState } from 'react';
-import {CommandForm} from "./commandForm";
+import CommandForm from "./commandForm";
+import BotBuilder from "../botBuilder";
 
-const Sidebar = () => {
+function Sidebar() {
     const [forms, setForms] = useState([]);
+    const [highestCommandNum, setHighestCommandNum] = useState(0);
+    const [activeForm, setActiveForm] = useState(null);
 
-    const addForm = () => {
-        const newFormId = forms.length + 1;
-        setForms([...forms, { id: newFormId, isOpen: true }]);
+    const showCommand = formNumber => {
+        setActiveForm(formNumber)
+    }
+
+    const addCommand = () => {
+        const newCommandNum = highestCommandNum + 1;
+        setForms(prevForms => [...prevForms, newCommandNum]);
+        setHighestCommandNum(newCommandNum);
     };
 
-    const handleFormRemove = (index) => {
-        const list = [...forms];
-        list.splice(index, 1);
-        setForms(list);
+    const removeCommand = formNumber => {
+        if (forms.length > 0) {
+            setForms(prevForms => prevForms.filter(form => form !== formNumber));
+            setActiveForm(null);
+        }
     };
 
-    const toggleForm = (formId) => {
-        setForms(forms.map(form => form.id === formId ? { ...form, isOpen: !form.isOpen } : form));
-    };
-
-    const handleSubmit = (formId) => (e) => {
-        e.preventDefault();
-        // Handle form submission logic here for the specific formId
-        // After form submission, you can hide the form by setting isOpen to false
-        toggleForm(formId);
+    const updateCommandName = (formNumber, newName) => {
+        const updatedCommands = forms.map(command => {
+            if (command.number === formNumber) {
+                return { ...command, name: newName };
+            }
+            return command;
+        });
+        setForms(updatedCommands);
     };
 
     return (
@@ -34,25 +42,30 @@ const Sidebar = () => {
                 </div>
                 <ul className="list-unstyled components">
                     <li>
-                        <button type="button" id="addCommand" className="btn btn-info" onClick={addForm}>
+                        <button type="button" id="addCommand" className="btn btn-info mb-3" onClick={addCommand}>
                             New Command
                         </button>
+                        {forms.map(formNumber => (
+                            <li key="formNumber">
+                                <a onClick={() => showCommand(formNumber)}>Command {formNumber}</a>
+                            </li>
+                        ))}
                     </li>
                 </ul>
             </nav>
-            <div class="form-container p-4">
-                {forms.map(form => (
-                    form.isOpen && (
-                        <form key={form.id} onSubmit={handleSubmit(form.id)}>
-                            <CommandForm>{form.id}</CommandForm>
-                            <button type="remove" className="btn btn-danger me-3" name="add"
-                                    onClick={() => handleFormRemove(form.id)}>
-                                Remove
+            <div className="form-container p-4">
+                {forms.map(formNumber => (
+                    <div className="form" key="formNumber" id={`form${formNumber}`}
+                         style={{display: activeForm === formNumber ? 'block' : 'none', marginBottom: '20px'}}>
+                        <h2>Command {formNumber}</h2>
+                        <form>
+                            <CommandForm/>
+                            <button type="button" className="btn btn-danger me-3"
+                                    onClick={() => removeCommand(formNumber)}>Delete
                             </button>
                             <button type="save" className="btn btn-secondary me-3">Save</button>
-                            <button type="submit" className="btn btn-primary me-3">Submit</button>
                         </form>
-                    )
+                    </div>
                 ))}
             </div>
         </div>
