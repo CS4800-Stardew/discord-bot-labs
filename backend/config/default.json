@@ -1,6 +1,6 @@
 {
   "jwtPrivateKey": "unsecureKey",
-  "db": "mongodb+srv://StardewAdmin:pO5zLdKGIecqxE5c@discordbotlabs.sbbtgpm.mongodb.net/",
+  "db": "",
   "port": "3900",
   "requiresAuth": true
 }
