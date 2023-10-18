@@ -22,7 +22,6 @@ body {
 /* CardArray style section (for home page) */
 .card-container {
   width: 31%;
-  
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 50px;
@@ -36,10 +35,12 @@ body {
 .card-description {
   text-align: left;
   margin-bottom: 30px;
+  
 }
 
 .card-description li {
   margin-bottom: 5px;
+  color: white;
 }
 
 

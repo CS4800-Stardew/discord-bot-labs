@@ -40,11 +40,13 @@ export default function StickyFooter() {
           sx={{
             py: 3,
             px: 3,
-            mt: 'auto',
             backgroundColor: (theme) =>
               theme.palette.mode === 'light'
                 ? theme.palette.grey[200]
                 : theme.palette.grey[800],
+            marginTop: 'auto', // Adjusted the margin-top property
+            position: 'sticky', // Added position: sticky
+            bottom: 0, // Stick to the bottom of the viewport
           }}
         >
           <Container maxWidth="sm">
