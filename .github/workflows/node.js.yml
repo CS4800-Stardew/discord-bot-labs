@@ -32,8 +32,8 @@ jobs:
         target: "~/"
       
     - run: cd frontend
-    - run: npm install
-    - run: CI=false npm run build
+    # - run: npm install
+    - run: npm run build
     
     - name: deploy frontend build file onto EC2 via SSH key
       uses: appleboy/scp-action@master
