@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import {Component, useState} from "react"
+import {useState} from "react"
 import CommandForm from "./components/commandForm";
+import getTextDecoration from "@mui/material/Link/getTextDecoration";
 
 function BotBuilder() {
     const [forms, setForms] = useState([]);
@@ -24,6 +25,7 @@ function BotBuilder() {
         }
     };
 
+    //Might be used for later
     const updateCommandName = (formNumber, newName) => {
         const updatedCommands = forms.map(command => {
             if (command.number === formNumber) {
@@ -47,24 +49,22 @@ function BotBuilder() {
                             New Command
                         </button>
                         {forms.map(formNumber => (
-                            <li key="formNumber">
-                                <a onClick={() => showCommand(formNumber)}>Command {formNumber}</a>
-                            </li>
+                            <a href="#/" style={{textDecoration: 'none'}}
+                               key={formNumber}
+                               onClick={() => showCommand(formNumber)}>Command {formNumber}</a>
                         ))}
                     </li>
                 </ul>
             </nav>
             <div className="form-container p-4">
                 {forms.map(formNumber => (
-                    <div className="form" key="formNumber" id={`form${formNumber}`}
+                    <div className="form" key={formNumber} id={`form${formNumber}`}
                          style={{display: activeForm === formNumber ? 'block' : 'none', marginBottom: '20px'}}>
                         <h2>Command {formNumber}</h2>
-                        <form>
-                            <CommandForm/>
-                            <button type="button" className="btn btn-danger me-3"
-                                    onClick={() => removeCommand(formNumber)}>Delete Command
-                            </button>
-                        </form>
+                        <CommandForm/>
+                        <button type="button" className="btn btn-danger me-3"
+                                onClick={() => removeCommand(formNumber)}>Delete Command
+                        </button>
                     </div>
                 ))}
             </div>

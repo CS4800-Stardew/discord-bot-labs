@@ -10,7 +10,7 @@ const ReplyToSlashChannel = () => {
                 type="select"
                 id="privateAction"
                 required>
-                <option selected>Select</option>
+                <option defaultValue>Select</option>
                 <option value="1">Yes</option>
                 <option value="2">No</option>
             </select>
@@ -26,7 +26,7 @@ const SendChannelMessage = () => {
                     type="select"
                     id="privateAction"
                     required>
-                <option selected>Select Channel...</option>
+                <option defaultValue>Select Channel...</option>
                 <option value="1">Yes</option>
                 <option value="2">No</option>
             </select>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import CommandForm from "./commandForm";
-import BotBuilder from "../botBuilder";
 
 function Sidebar() {
     const [forms, setForms] = useState([]);
@@ -24,16 +23,6 @@ function Sidebar() {
         }
     };
 
-    const updateCommandName = (formNumber, newName) => {
-        const updatedCommands = forms.map(command => {
-            if (command.number === formNumber) {
-                return { ...command, name: newName };
-            }
-            return command;
-        });
-        setForms(updatedCommands);
-    };
-
     return (
         <div className="wrapper container-fluid no-padding">
             <nav id="sidebar">
@@ -47,7 +36,7 @@ function Sidebar() {
                         </button>
                         {forms.map(formNumber => (
                             <li key="formNumber">
-                                <a onClick={() => showCommand(formNumber)}>Command {formNumber}</a>
+                                <a href="#/" key={formNumber} onClick={() => showCommand(formNumber)}>Command {formNumber}</a>
                             </li>
                         ))}
                     </li>
@@ -58,13 +47,11 @@ function Sidebar() {
                     <div className="form" key="formNumber" id={`form${formNumber}`}
                          style={{display: activeForm === formNumber ? 'block' : 'none', marginBottom: '20px'}}>
                         <h2>Command {formNumber}</h2>
-                        <form>
-                            <CommandForm/>
-                            <button type="button" className="btn btn-danger me-3"
-                                    onClick={() => removeCommand(formNumber)}>Delete
-                            </button>
-                            <button type="save" className="btn btn-secondary me-3">Save</button>
-                        </form>
+                        <CommandForm/>
+                        <button type="button" className="btn btn-danger me-3"
+                                onClick={() => removeCommand(formNumber)}>Delete
+                        </button>
+                        <button type="save" className="btn btn-secondary me-3">Save</button>
                     </div>
                 ))}
             </div>

@@ -53,7 +53,7 @@ function AddAction() {
                         value={singleService.type}
                         onChange={(e) => handleServiceChange(e, index)}
                         required>
-                        <option selected>Select an Action</option>
+                        <option defaultValue>Select an Action</option>
                         <option value="1">Reply to Slash Channel</option>
                         <option value="2">Send Channel Message</option>
                         <option value="3">Send Direct Message</option>
