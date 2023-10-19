@@ -21,37 +21,27 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: deploy backend folder onto EC2 via SSH key
-      uses: easingthemes/ssh-deploy@main
+    - name: deploy backend file onto EC2 via SSH key
+      uses: appleboy/scp-action@master
       with:
-        SSH_PRIVATE_KEY: ${{ secrets.KEY }}
-        SOURCE: "backend/"
-        REMOTE_HOST: ${{ secrets.HOST }}
-        REMOTE_USER: ec2-user
-        TARGET: "~/"
-        # host: ${{ secrets.HOST }}
-        # username: ec2-user
-        # port: 22
-        # key: ${{ secrets.KEY }}
-        # source: "backend/"
-        # target: "~/"
+        host: ${{ secrets.HOST }}
+        username: ec2-user
+        port: 22
+        key: ${{ secrets.KEY }}
+        source: "backend/"
+        target: "~/"
       
     - run: cd frontend
     - run: npm install
     - run: CI=false npm run build
     
-    - name: deploy frontend build folder onto EC2 via SSH key
-      uses: easingthemes/ssh-deploy@main
+    - name: deploy frontend build file onto EC2 via SSH key
+      uses: appleboy/scp-action@master
       with:
-        SSH_PRIVATE_KEY: ${{ secrets.KEY }}
-        SOURCE: "backend/"
-        REMOTE_HOST: ${{ secrets.HOST }}
-        REMOTE_USER: ec2-user
-        TARGET: "~/"
-        # host: ${{ secrets.HOST }}
-        # username: ec2-user
-        # port: 22
-        # key: ${{ secrets.KEY }}
-        # source: "build/"
-        # target: "~/"
-        
+        host: ${{ secrets.HOST }}
+        username: ec2-user
+        port: 22
+        key: ${{ secrets.KEY }}
+        source: "build/"
+        target: "~/"
+               
