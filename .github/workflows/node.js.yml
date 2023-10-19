@@ -23,7 +23,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
 
     - name: deploy backend file onto EC2 via SSH key
       uses: appleboy/scp-action@master
