@@ -24,7 +24,7 @@ jobs:
     - name: deploy backend file onto EC2 via SSH key
       uses: appleboy/scp-action@master
       with:
-        host: ec2-54-146-206-255.compute-1.amazonaws.com
+        host: ${{ secrets.HOST }}
         username: ec2-user
         port: 22
         key: ${{ secrets.KEY }}
