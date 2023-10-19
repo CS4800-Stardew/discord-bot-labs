@@ -57,9 +57,8 @@ jobs:
           killall node
           cd backend
           npm install
-          nohup nodemon start > log.txt &
-          cd..
+          nohup nodemon start > nohup.out 2> nohup.err < /dev/null &
+          cd ..
           cd frontend
-          cd build
-          nohup serve -s build > log.txt &
+          nohup serve -s build > nohup.out 2> nohup.err < /dev/null &
                
