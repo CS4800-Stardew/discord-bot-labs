@@ -45,4 +45,21 @@ jobs:
         key: ${{ secrets.KEY }}
         source: "frontend/build/"
         target: "~/"
+
+    - name: Run commands to start React and Express servers
+      uses: appleboy/ssh-action@v0.1.9
+      with:
+        host: ${{ secrets.HOST }}
+        username: ec2-user
+        port: 22
+        key: ${{ secrets.KEY }}
+        script: |
+          killall node
+          cd backend
+          npm install
+          nohup nodemon start > log.txt &
+          cd..
+          cd frontend
+          cd build
+          nohup serve -s build > log.txt &
                
