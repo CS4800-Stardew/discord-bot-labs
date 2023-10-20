@@ -5,7 +5,7 @@ import axios from 'axios'; // library for making HTTP requests
 import { toast } from 'react-toastify'; // toast notifications for error handling
 
 // base URL for API requests. Change this later
-axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.baseURL = "http://3.85.226.202:5000/api";
 
 // interceptor to handle responses
 axios.interceptors.response.use(null, error => {
