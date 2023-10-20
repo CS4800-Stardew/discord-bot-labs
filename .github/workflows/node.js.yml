@@ -30,6 +30,7 @@ jobs:
         key: ${{ secrets.KEY }}
         source: "backend/"
         target: "~/"
+        timeout: 120s
       
     - run: |
         cd frontend
@@ -45,6 +46,7 @@ jobs:
         key: ${{ secrets.KEY }}
         source: "frontend/build/"
         target: "~/"
+        timeout: 120s
 
     - name: Run commands to start React and Express servers
       uses: appleboy/ssh-action@v0.1.9
