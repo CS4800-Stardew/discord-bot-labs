@@ -9,6 +9,8 @@ import Home from './pages/home'
 import BotBuilder from './pages/botBuilder'
 import LoginForm from './pages/loginForm'
 import RegisterForm from './pages/registerForm'
+import Tutorial from './pages/tutorial'
+import GetStarted from './pages/getStarted'
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
           <Route path="/bot-builder" element={<BotBuilder />}/>
           <Route path='/login' element={<LoginForm/>}/>
           <Route path='/register' element={<RegisterForm/>}/>
+            <Route path='/tutorial' element={<Tutorial/>}/>
+            <Route path='/get-started' element={<GetStarted/>}/>
         </Routes>
         <StickyFooter/>
       </main>
