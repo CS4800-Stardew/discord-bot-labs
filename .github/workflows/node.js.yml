@@ -65,7 +65,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST }}
           REMOTE_USER: ec2-user
           REMOTE_PORT: 22
-          SOURCE: "build/"
+          SOURCE: "frontend/build/"
           TARGET: "~/"
 
       - name: Run commands to start React and Express servers
