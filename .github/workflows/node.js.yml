@@ -40,7 +40,7 @@ jobs:
           REMOTE_USER: ec2-user
           REMOTE_PORT: 22
           SOURCE: "backend/"
-          TARGET: "~/"
+          TARGET: "~/backend/"
 
       - run: |
           cd frontend
@@ -66,7 +66,7 @@ jobs:
           REMOTE_USER: ec2-user
           REMOTE_PORT: 22
           SOURCE: "frontend/build/"
-          TARGET: "~/"
+          TARGET: "~/frontend/build/"
 
       - name: Run commands to start React and Express servers
         uses: appleboy/ssh-action@v0.1.9
