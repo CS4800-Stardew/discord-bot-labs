@@ -3,9 +3,10 @@
 
 import axios from 'axios'; // library for making HTTP requests
 import { toast } from 'react-toastify'; // toast notifications for error handling
+import configData from '../../dbl-config.json';
 
 // base URL for API requests. Change this later
-axios.defaults.baseURL = "http://3.85.226.202:5000/api";
+axios.defaults.baseURL = configData.axiosBaseURL;
 
 // interceptor to handle responses
 axios.interceptors.response.use(null, error => {

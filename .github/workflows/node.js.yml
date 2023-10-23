@@ -44,6 +44,7 @@ jobs:
 
       - run: |
           cd frontend
+          cat <<< '{ "axiosBaseURL": "${{ secrets.AXIOSBASEURL }}" }' > dbl-config.json
           npm install
           CI=false npm run build
 
@@ -78,6 +79,7 @@ jobs:
           script: |
             killall node
             cd backend
+            cat <<< '{ "jwtPrivateKey": "'${{ secrets.JWTPRIVATEKEY }}'", "db": "'${{ secrets.DB }}'", "port": "3900", "requiresAuth": true }' > default.json
             npm install
             nohup nodemon start > nohup.out 2> nohup.err < /dev/null &
             cd ..
