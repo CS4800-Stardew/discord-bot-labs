@@ -3,7 +3,7 @@
 
 import axios from 'axios'; // library for making HTTP requests
 import { toast } from 'react-toastify'; // toast notifications for error handling
-import configData from '../../dbl-config.json';
+import configData from '../dbl-config.json';
 
 // base URL for API requests. Change this later
 axios.defaults.baseURL = configData.axiosBaseURL;

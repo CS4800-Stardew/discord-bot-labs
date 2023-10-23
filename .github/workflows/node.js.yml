@@ -44,7 +44,9 @@ jobs:
 
       - run: |
           cd frontend
+          cd src
           cat <<< '{ "axiosBaseURL": "${{ secrets.AXIOSBASEURL }}" }' > dbl-config.json
+          cd ..
           npm install
           CI=false npm run build
 
