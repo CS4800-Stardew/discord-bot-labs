@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {ReplyToSlashChannel, SendChannelMessage} from "./selectedActions";
+import {ReplyToSlashChannel, SendChannelMessage, SendDirectMessage, AddRole, RemoveRole, Kick} from "./selectedActions";
 
 function AddAction() {
     const [actionList, setActionList] = useState([{ action: "" }]);
@@ -27,6 +27,14 @@ function AddAction() {
                 return <ReplyToSlashChannel />;
             case "2":
                 return <SendChannelMessage />;
+            case "3":
+                return <SendDirectMessage />
+            case "4":
+                return <AddRole />
+            case "5":
+                return <RemoveRole />
+            case "6":
+
             // Add cases for other action types and corresponding components
             default:
                 return null;
