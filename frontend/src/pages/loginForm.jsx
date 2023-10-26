@@ -14,7 +14,7 @@ class LoginForm extends Form {
 
   // Joi schema for form validation
   schema = {
-    username: Joi.string().required().label("Username"),
+    username: Joi.string().required().label("Email or Username"),
     password: Joi.string().required().label("Password"),
   };
 
@@ -23,10 +23,11 @@ class LoginForm extends Form {
     try {
       const { data } = this.state;
       await auth.login(data.username, data.password);
-
-      const { state } = this.props.location;
+      //const { state } = this.props.location;
       // Redirect user to previous page or home page after successful login
-      window.location = state ? state.from.pathname : "/";
+      //window.location = state ? state.from.pathname : "/";
+      window.location = '/';
+      
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -45,7 +46,7 @@ class LoginForm extends Form {
       <div className="auth-container">
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("username", "Username")}
+          {this.renderInput("username", "Email or Username")}
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Login")}
         </form>

@@ -11,8 +11,8 @@ const tokenKey = "token"; // key used to store the JWT in local storage
 http.setJwt(getJwt());
 
 // log in a user by sending their email and password to backend
-export async function login(email, password) {
-    const { data: jwt } = await http.post(apiEndpoint, { email, password });
+export async function login(emailOrUser, password) {
+    const { data: jwt } = await http.post(apiEndpoint, { emailOrUser, password });
     // store the JWT in local storage
     localStorage.setItem(tokenKey, jwt);
 }
