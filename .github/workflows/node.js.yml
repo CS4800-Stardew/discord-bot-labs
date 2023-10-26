@@ -89,3 +89,5 @@ jobs:
             cd ..
             cd frontend
             nohup serve -s build > nohup.out 2> nohup.err < /dev/null &
+            sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
+            sudo iptables -I INPUT -p tcp --dport 3000 -j ACCEPT
