@@ -1,10 +1,25 @@
 import React, {useState} from "react";
-import {ReplyToSlashChannel, SendChannelMessage, SendDirectMessage, AddRole, RemoveRole, Kick} from "./selectedActions";
+import {
+    ReplyToSlashCommand,
+    SendChannelMessage,
+    SendDirectMessage,
+    AddRole,
+    RemoveRole,
+    Kick,
+} from "./selectedActions";
 
-function AddAction() {
+function AddAction(props) {
     const [actionList, setActionList] = useState([{ action: "" }]);
+    const [actionData, setActionData] = useState({})
 
-    const handleServiceChange = (e, index) => {
+    const updateActionData = (data) => {
+        setActionData(data);
+        props.onActionChange(actionData)
+
+        console.log("this is actionList:", actionData)
+    }
+
+    const handleChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...actionList];
         list[index][name] = value;
@@ -15,6 +30,8 @@ function AddAction() {
         const list = [...actionList];
         list.splice(index, 1);
         setActionList(list);
+        actionData.splice(index, 1)
+        props.onActionChange(actionData)
     };
 
     const handleAddAction = () => {
@@ -24,16 +41,17 @@ function AddAction() {
     const renderContainer = (type) => {
         switch (type) {
             case "1":
-                return <ReplyToSlashChannel />;
+                return <ReplyToSlashCommand listOfAction={updateActionData}/>;
             case "2":
-                return <SendChannelMessage />;
+                return <SendChannelMessage listOfAction={updateActionData}/>;
             case "3":
-                return <SendDirectMessage />
+                return <SendDirectMessage listOfAction={updateActionData}/>
             case "4":
-                return <AddRole />
+                return <AddRole listOfAction={updateActionData}/>
             case "5":
-                return <RemoveRole />
+                return <RemoveRole listOfAction={updateActionData}/>
             case "6":
+                return <Kick listOfAction={updateActionData}/>
 
             // Add cases for other action types and corresponding components
             default:
@@ -59,7 +77,7 @@ function AddAction() {
                         type="select"
                         id="action"
                         value={singleService.type}
-                        onChange={(e) => handleServiceChange(e, index)}
+                        onChange={(e) => handleChange(e, index)}
                         required>
                         <option defaultValue>Select an Action</option>
                         <option value="1">Reply to Slash Channel</option>
@@ -67,11 +85,7 @@ function AddAction() {
                         <option value="3">Send Direct Message</option>
                         <option value="4">Add Role</option>
                         <option value="5">Remove Role</option>
-                        <option value="6">Delete Message</option>
-                        <option value="7">Kick</option>
-                        <option value="8">Purge</option>
-                        <option value="9">Ban</option>
-                        <option value="10">Unban</option>
+                        <option value="6">Kick</option>
                     </select>
                     {actionList.length - 1 === index && actionList.length < 10 && (
                         <button

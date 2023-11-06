@@ -1,10 +1,38 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
-const SlashCommand = () => {
+let updatedCmdList = [];
+
+function updatedCommand(updatedName, props) {
+    let found = false;
+
+    for (let i = 0 ; i < updatedCmdList.length; i++) {
+        if (updatedCmdList[i].index === updatedName.index) {
+            updatedCmdList[i] = {...updatedCmdList[i], ...updatedName};
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        updatedCmdList.push(updatedName);
+    }
+
+    props.onNameChange(updatedCmdList);
+
+    //console.log("this is the updatedDataList: ", updatedDataList);
+}
+
+function SlashCommand(props) {
+
     const [formData, setFormData] = useState({
-        name: '',
+        command: '',
         description: '',
     });
+
+    useEffect(() => {
+        // This effect runs whenever formData changes
+        updatedCommand(formData, props);
+    }, [formData, props]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -14,20 +42,14 @@ const SlashCommand = () => {
         });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission, e.g., send data to an API or perform other actions
-        console.log('Form submitted with data:', formData);
-    };
-
     return (
-        <form onSubmit={handleSubmit}>
+        <form>
             <div className="input-group my-3 px-5">
                 <span className="input-group-text" id="addon-wrapping">/</span>
                 <input type="text"
                        value={formData.name}
                        onChange={handleInputChange}
-                       name = "name"
+                       name="command"
                        className="form-control"
                        aria-label="commandName"
                        placeholder="ex. ban"
@@ -45,7 +67,6 @@ const SlashCommand = () => {
                        aria-label="Description"
                        aria-describedby="addon-wrapping"/>
             </div>
-
             {/*
                 <button type="button" className="btn btn-secondary mb-3"
                         onClick={() => this.setState({permissionForm: !this.state.permissionForm})}>

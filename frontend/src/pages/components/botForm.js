@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import AddAction from "./addAction"; // Import Bootstrap JavaScript
@@ -16,7 +16,37 @@ const Permission = () => {
 }
  */
 
-const BotForm = ({ forms, activeForm, removeCommand }) => {
+const cmdList = []
+const finalActionList = []
+
+const BotForm = ({forms, activeForm, removeCommand, jsonList}) => {
+    const [fullActList, setFullActList] = useState([]);
+    const [cmdName, setCmdName] = useState([]);
+
+    const handleSlashCommand = (data, formNumber) => {
+        //setCmdName(data)
+        //jsonObject.Name = data[0]
+
+        //console.log("this is the data:", data);
+        //console.log("this is the formNumber:", formNumber);
+        console.log("activeForm: ", activeForm)
+
+        if (activeForm !== null) {
+            jsonList[activeForm-1].Name = data;
+        }
+
+        console.log("jsonObject: ", jsonList)
+
+    }
+
+    function handleActionData(data, formNumber) {
+        setFullActList(data)
+        //jsonObject.Action = data
+
+        //updateInFinalList(jsonObject)
+       // console.log("this is the jsonObject.Action: ", jsonObject.Action)
+    }
+
     return (
         <div className="form-container p-4">
             {forms.map(formNumber => (
@@ -33,7 +63,7 @@ const BotForm = ({ forms, activeForm, removeCommand }) => {
                             </h2>
                             <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#accordionCommand">
-                                <SlashCommand />
+                                <SlashCommand onNameChange={event => handleSlashCommand(event, formNumber)}/>
                             </div>
                         </div>
 
@@ -46,7 +76,7 @@ const BotForm = ({ forms, activeForm, removeCommand }) => {
                             </h2>
                             <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionCommand">
-                                <AddAction />
+                                <AddAction onActionChange={handleActionData}/>
                             </div>
                         </div>
                     </div>
