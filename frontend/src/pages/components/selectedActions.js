@@ -86,8 +86,8 @@ function SendChannelMessage(props) {
                     onChange={handleInputChange}
                     required>
                 <option defaultValue>Select Channel...</option>
-                <option value="channel1 in server">Yes</option>
-                <option value="channel2 in server">No</option>
+                <option value="channel1 in server">Channel 1</option>
+                <option value="channel2 in server">Channel 2</option>
             </select>
             <label className="form-label float-start">Message Content</label>
             <input className="form-control mb-3" type="text"

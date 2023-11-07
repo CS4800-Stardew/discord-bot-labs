@@ -37,6 +37,11 @@ const BotForm = ({ cmdIds, activeCmd, removeCommand, jsonList }) => {
 
   function handleActionData(data, formNumber) {
     console.log("this is the action data:", data);
+    if (formNumber !== null && formNumber === activeCmd) {
+      jsonList[formNumber - 1].Action = data;
+      console.log("jsonObject: ", JSON.parse(JSON.stringify(jsonList)));
+      return jsonList;
+    }
     //setFullActList(data);
     //jsonObject.Action = data
     //updateInFinalList(jsonObject)
@@ -111,7 +116,7 @@ const BotForm = ({ cmdIds, activeCmd, removeCommand, jsonList }) => {
                 aria-labelledby="headingTwo"
                 data-bs-parent="#accordionCommand"
               >
-                <AddAction onActionChange={handleActionData} />
+                <AddAction onActionChange={(event) => handleActionData(event, formNumber)} />
               </div>
             </div>
           </div>

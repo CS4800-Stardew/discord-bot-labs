@@ -10,13 +10,12 @@ import {
 
 function AddAction(props) {
     const [actionList, setActionList] = useState([{ action: "" }]);
-    const [actionData, setActionData] = useState({})
+    const [actionData, setActionData] = useState()
 
     const updateActionData = (data) => {
         setActionData(data);
-        props.onActionChange(actionData)
 
-        console.log("this is actionList:", actionData)
+        props.onActionChange(actionData)
     }
 
     const handleChange = (e, index) => {
