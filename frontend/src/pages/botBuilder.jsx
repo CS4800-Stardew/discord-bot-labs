@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Sidebar from "./components/sidebar";
 import BotForm from "./components/botForm";
+import botService from "./../services/botService";
 
 class BotBuilder extends Component {
   constructor(props) {
@@ -17,8 +18,18 @@ class BotBuilder extends Component {
     this.botFormRef = React.createRef();
   }
 
-  submitBot = () => {
-    console.log(this.state.jsonList);
+  submitBot = async () => {
+    //console.log(this.state.jsonList);
+    try {
+      const { data } = this.jsonList;
+      await botService.createBot(data);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.username = ex.response.data;
+        this.setState({ errors });
+      }
+    }
   };
 
   //   removeDuplicates(newData) {
@@ -71,19 +82,21 @@ class BotBuilder extends Component {
 
   render() {
     return (
-      <div className="wrapper container-fluid no-padding">
-        <Sidebar
-          cmdIds={this.state.cmdIds}
-          addCommand={this.addCommand}
-          showCommand={this.showCommand}
-        />
-        <BotForm
-          ref={(ref) => (this.botFormRef[0] = ref)}
-          cmdIds={this.state.cmdIds}
-          activeCmd={this.state.activeCmd}
-          removeCommand={this.removeCommand}
-          jsonList={this.state.jsonList}
-        />
+      <div>
+        <div className="wrapper container-fluid no-padding">
+          <Sidebar
+            cmdIds={this.state.cmdIds}
+            addCommand={this.addCommand}
+            showCommand={this.showCommand}
+          />
+          <BotForm
+            ref={(ref) => (this.botFormRef[0] = ref)}
+            cmdIds={this.state.cmdIds}
+            activeCmd={this.state.activeCmd}
+            removeCommand={this.removeCommand}
+            jsonList={this.state.jsonList}
+          />
+        </div>
         <button onClick={this.submitBot}>Submit</button>
       </div>
     );
