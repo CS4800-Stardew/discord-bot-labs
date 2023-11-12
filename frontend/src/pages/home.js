@@ -13,20 +13,19 @@ import React from "react";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-
 import { Container } from "@mui/material";
 import Box from "@mui/system/Box";
 import { PlayArrowSharp } from "@mui/icons-material";
 
-import GroupedTitleAndButton from "./components/GroupedTitleAndButton"; 
+import GroupedTitleAndButton from "./components/GroupedTitleAndButton";
 import Gallery from "./components/Gallery";
 import CardArray from "./components/CardArray";
 
 function Home() {
   return (
     <React.Fragment>
-      <Container width="100vw">
-        <Box my={4} textAlign="center">
+      <Container className="home-container">
+        <Box className="hero-cta-container">
           <GroupedTitleAndButton
             header="Discord Bot Labs"
             title="Your Instant 'Build-a-Bot' Creator Service"
@@ -38,11 +37,11 @@ function Home() {
           />
         </Box>
 
-        <Box my={4} textAlign="center" mt={10}>
+        <Box className="resources-container">
           <Gallery />
         </Box>
 
-        <Box my={4} textAlign="center" mt={20}>
+        <Box className="about-service-container">
           {" "}
           {/* add margin-top (mt) for space */}
           <CardArray />

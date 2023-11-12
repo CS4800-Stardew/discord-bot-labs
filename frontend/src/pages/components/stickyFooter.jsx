@@ -1,24 +1,20 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
 
 //maybe add to footer so it has site-map or other navigation elements
 
-//returns the underlined text for our website name, work on fixing link reference 
+//returns the underlined text for our website name, work on fixing link reference
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary">
-      {'Copyright © '}
-      <Link color="inherit" >   
-        Stardew
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {"Copyright © "}
+      <Link color="inherit">Stardew</Link> {new Date().getFullYear()}
+      {"."}
     </Typography>
   );
 }
@@ -30,9 +26,9 @@ export default function StickyFooter() {
     <ThemeProvider theme={defaultTheme}>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "50vh",
         }}
       >
         <Box
@@ -41,18 +37,16 @@ export default function StickyFooter() {
             py: 3,
             px: 3,
             backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
+              theme.palette.mode === "light"
                 ? theme.palette.grey[200]
                 : theme.palette.grey[800],
-            marginTop: 'auto', // Adjusted the margin-top property
-            position: 'sticky', // Added position: sticky
+            marginTop: "auto", // Adjusted the margin-top property
+            position: "sticky", // Added position: sticky
             bottom: 0, // Stick to the bottom of the viewport
           }}
         >
           <Container maxWidth="sm">
-            <Typography variant="body1">
-              All Rights Reserved.
-            </Typography>
+            <Typography variant="body1">All Rights Reserved.</Typography>
             <Copyright />
           </Container>
         </Box>

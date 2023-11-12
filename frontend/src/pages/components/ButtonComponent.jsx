@@ -1,3 +1,5 @@
+// ButtonComponent.jsx
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -11,12 +13,13 @@ function ButtonComponent({ label, to, icon }) {
   };
 
   return (
-    <Link to={to} style={{ textDecoration: "none" }}>
+    <Link to={to} className="button-link">
       <Button
         variant="contained"
         color="primary"
         onClick={scrollToTop}
         startIcon={icon}
+        className="custom-button"
       >
         {label}
       </Button>

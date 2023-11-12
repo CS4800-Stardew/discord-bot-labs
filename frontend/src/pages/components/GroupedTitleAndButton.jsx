@@ -11,24 +11,12 @@ function GroupedTitleAndButton({
   buttonIcon,
 }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        background: "#7289DA",
-        padding: "150px",
-      }}
-    >
+    <div className="grouped-container">
       <div>
-        <h1 style={{ marginBottom: "10px", color: "white" }}>{header}</h1>
-        <h2 style={{ marginBottom: "40px", color: "white" }}>{title}</h2>
-        <img
-          src={logo}
-          alt="Image"
-          style={{ maxWidth: "300px", marginRight: "20px" }}
-        />
-        <h3 style={{ marginBottom: "40px", color: "white" }}>{subtitle}</h3>
+        <h1 className="header-text">{header}</h1>
+        <h2 className="title-text">{title}</h2>
+        <img src={logo} alt="Image" className="logo-image" />
+        <h3 className="subtitle-text">{subtitle}</h3>
         <ButtonComponent label={buttonLabel} to={buttonTo} icon={buttonIcon} />
       </div>
     </div>
