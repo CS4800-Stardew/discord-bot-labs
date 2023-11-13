@@ -7,8 +7,9 @@ import NavBar from "./pages/components/navBar";
 import StickyFooter from "./pages/components/stickyFooter";
 import Home from "./pages/home";
 import BotBuilder from "./pages/botBuilder";
-import LoginForm from "./pages/loginForm";
-import RegisterForm from "./pages/registerForm";
+import Login from "./pages/login";
+import Auth from "./pages/auth";
+import Dashboard from "./pages/dashboard";
 import Tutorial from "./pages/tutorial";
 import GetStarted from "./pages/getStarted";
 import auth from "./services/authService";
@@ -21,7 +22,7 @@ const App = () => {
 
   // fetch current user's auth and set it in the user state when the component mounts
   useEffect(() => {
-    const currentUser = auth.getCurrentUser();
+    const currentUser = auth.verifyToken();
     setUser(currentUser);
   }, []);
 
@@ -37,11 +38,11 @@ const App = () => {
           <Route path="/bot-builder" element={<BotBuilder />} />
           <Route path="/tutorial" element={<Tutorial />} />
           <Route path="/get-started" element={<GetStarted />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/repo" element={<ProtectedRoute />}>
-            <Route path="/repo" element={<BotRepository />} />
+          <Route path="/dashboard" element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
         <StickyFooter />
