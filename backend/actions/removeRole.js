@@ -1,4 +1,4 @@
-// commands/removerole.js
+
 module.exports = {
     data: {
         name: 'removerole',

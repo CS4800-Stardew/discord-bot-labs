@@ -1,4 +1,4 @@
-// commands/addrole.js
+
 module.exports = {
     data: {
         name: 'addrole',

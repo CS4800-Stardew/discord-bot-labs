@@ -1,4 +1,4 @@
-// commands/senddm.js
+
 module.exports = {
     data: {
         name: 'senddm',

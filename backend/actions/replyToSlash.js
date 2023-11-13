@@ -1,4 +1,4 @@
-// commands/reply.js
+
 module.exports = {
     data: {
         name: 'reply',

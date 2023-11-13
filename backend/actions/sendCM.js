@@ -1,4 +1,4 @@
-// commands/sendmessage.js
+
 module.exports = {
     data: {
         name: 'sendmessage',
