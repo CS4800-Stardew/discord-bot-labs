@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Sidebar = ({ cmdIds, addCommand, showCommand }) => {
+const Sidebar = ({ commands, openTriggerPopup, showCommand }) => {
   return (
     <nav id="sidebar">
       <div className="sidebar-header">
@@ -12,11 +12,11 @@ const Sidebar = ({ cmdIds, addCommand, showCommand }) => {
             type="button"
             id="addCommand"
             className="btn btn-info mb-3"
-            onClick={addCommand}
+            onClick={openTriggerPopup}
           >
             New Command
           </button>
-          {cmdIds.map((formNumber) => (
+          {/* {commands.map((formNumber) => (
             <li key={formNumber}>
               <a
                 href="#/"
@@ -28,7 +28,7 @@ const Sidebar = ({ cmdIds, addCommand, showCommand }) => {
                 {formNumber}
               </a>
             </li>
-          ))}
+          ))} */}
         </li>
       </ul>
     </nav>
