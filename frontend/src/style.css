@@ -13,7 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #979797;
+  background: #555;
 }
 
 .container {
@@ -128,14 +128,61 @@ body {
   padding: 2rem;
   width: 100%;
   max-width: 62.5rem;
-  background-color: #555;
+  background-color: #36393f;
 }
 
 .popup-inner .close-popup-button{
   position: absolute;
   top: 1rem;
   right: 1rem;
+  border: 1px solid transparent;
+  background-color: #36393f;
 }
+
+/* Trigger List */
+.trigger-list-title{
+  color: white;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-item-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.use-trigger-btn {
+  background-color: #7289da; 
+  color: white;
+  text-align: center;
+  font-size: 1rem; 
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.375rem; 
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+  transition: background-color 0.75s ease;
+}
+
+.use-trigger-btn:hover {
+  background-color: #4e5d94;
+}
+
+.trigger-info{
+  font-size: 1.2rem;
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.trigger-desc {
+  margin-left: auto; /* Pushes the "trigger-info" h3 to the right */
+}
+
 
 /* Home page */
 .home-container {

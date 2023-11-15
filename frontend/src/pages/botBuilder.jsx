@@ -1,8 +1,9 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
 import Sidebar from "./components/sidebar";
 import Popup from "./components/common/popup";
+import TriggerList from "./components/triggerList";
 
 const BotBuilder = () => {
   const [triggerPopup, setTriggerPopup] = useState(false);
@@ -17,7 +18,8 @@ const BotBuilder = () => {
         />
         <h1>This is temp</h1>
         <Popup trigger={triggerPopup} setTrigger={setTriggerPopup}>
-          <h2>Select From Available Triggers</h2>
+          <h2 className="trigger-list-title">Select From Available Triggers</h2>
+          <TriggerList/>
         </Popup>
       </div>
     </div>
