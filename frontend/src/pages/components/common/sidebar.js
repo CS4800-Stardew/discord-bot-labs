@@ -15,29 +15,27 @@ const Sidebar = ({
         <h3>{title}</h3>
       </div>
       <ul className="list-unstyled components">
-        <li>
-          <button
-            type="button"
-            id="addCommand"
-            className="btn btn-info mb-3"
-            onClick={buttonEffect}
-          >
-            {buttonText}
-          </button>
-          {items.map((item) => (
-            <li key={item.id}>
-              <a
-                href="#/"
-                onClick={() => {
-                  onItemClick(item);
-                }}
-              >
-                {prefix}
-                {item.name ? item.name : tempName}
-              </a>
-            </li>
-          ))}
-        </li>
+        <button
+          type="button"
+          id="button"
+          className="btn btn-info mb-3"
+          onClick={buttonEffect}
+        >
+          {buttonText}
+        </button>
+        {items.map((item) => (
+          <li key={item.id}>
+            <a
+              href="#/"
+              onClick={() => {
+                onItemClick(item);
+              }}
+            >
+              {prefix}
+              {item.name ? item.name : tempName}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );

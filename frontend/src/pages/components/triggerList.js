@@ -29,7 +29,7 @@ const TriggerList = ({ onTriggerSelect }) => {
   return (
     <div className="list-container">
       {triggers.map((trigger) => (
-        <div className="list-item-wrapper">
+        <div className="list-item-wrapper" key={trigger.effect}>
           <button className="use-trigger-btn" onClick={onTriggerSelect}>
             <FontAwesomeIcon icon={faBolt} />
             Use Trigger

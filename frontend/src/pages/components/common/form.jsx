@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import Joi from "joi-browser"; // library for data validation
 import Input from "./input";
 import Select from "./select";
+import SpanInput from "./spanInput";
 
 class Form extends Component {
   state = {
@@ -44,9 +45,8 @@ class Form extends Component {
   handleChange = ({ currentTarget: input }) => {
     const errors = { ...this.state.errors }; // clone current errors object
     const errorMessage = this.validateProperty(input); // validate input field
-    if (errorMessage)
-      errors[input.name] =
-        errorMessage; // Set error message if validation fails
+    if (errorMessage) errors[input.name] = errorMessage;
+    // Set error message if validation fails
     else delete errors[input.name]; // remove error if validation succeeds
     const data = { ...this.state.data }; // clone current data object
     data[input.name] = input.value; // update data object with new field value
@@ -84,6 +84,21 @@ class Form extends Component {
       <Input
         type={type}
         name={name}
+        value={data[name]}
+        label={label}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
+
+  renderSpanInput(name, label, placeholder, type = "text") {
+    const { data, errors } = this.state;
+    return (
+      <SpanInput
+        type={type}
+        name={name}
+        placeholder={placeholder}
         value={data[name]}
         label={label}
         onChange={this.handleChange}

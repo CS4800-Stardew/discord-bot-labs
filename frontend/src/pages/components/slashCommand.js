@@ -1,96 +1,65 @@
 import React, { Component } from "react";
+import Joi from "joi-browser";
 
-class SlashCommand extends Component {
+import Form from "./common/form";
+
+class SlashCommand extends Form {
   constructor(props) {
     super(props);
     this.state = {
-      formData: {
-        command: "",
-        description: "",
-      },
+      data: props.cmd,
+      errors: {},
     };
   }
 
-  updatedCmdList = [];
-
-  reeeeeee() {
-    console.log(this.state.formData);
-  }
-
-  updatedCommand(updatedName) {
-    let found = false;
-
-    for (let i = 0; i < this.updatedCmdList.length; i++) {
-      if (this.updatedCmdList[i].index === updatedName.index) {
-        this.updatedCmdList[i] = { ...this.updatedCmdList[i], ...updatedName };
-        found = true;
-        break;
-      }
-    }
-    if (!found) {
-      this.updatedCmdList.push(updatedName);
-    }
-
-    this.props.onNameChange(this.updatedCmdList);
-  }
-
-  handleInputChange = (e) => {
-    const { name, value } = e.target;
-    this.setState((prevState) => ({
-      formData: {
-        ...prevState.formData,
-        [name]: value,
-      },
-    }));
-  };
-
-  getData = () => {
-    return JSON.stringify(this.state.formData);
+  schema = {
+    name: Joi.string().min(1).label("Command Name"),
+    description: Joi.string().label("Command Description"),
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.formData !== this.state.formData) {
-      this.updatedCommand(this.state.formData);
+    // Check if the props.cmd has changed
+    if (prevProps.cmd !== this.props.cmd) {
+      this.setState({
+        data: this.props.cmd,
+        errors: {},
+      });
+    }
+
+    // Check if the data state has changed
+    if (prevState.data !== this.state.data) {
+      this.props.onDataChange(this.state.data);
     }
   }
 
   render() {
-    const { command, description } = this.state.formData;
-
     return (
-      <form>
-        <div className="input-group my-3 px-5">
-          <span className="input-group-text" id="addon-wrapping">
-            /
-          </span>
-          <input
-            type="text"
-            value={command}
-            onChange={this.handleInputChange}
-            name="command"
-            className="form-control"
-            aria-label="commandName"
-            placeholder="ex. ban"
-            required
-          />
-        </div>
-
-        <div className="input-group my-3 px-5">
-          <span className="input-group-text" id="addon-wrapping">
-            @
-          </span>
-          <input
-            type="text"
-            className="form-control"
-            name="description"
-            value={description}
-            onChange={this.handleInputChange}
-            placeholder="Description of command"
-            aria-label="Description"
-            aria-describedby="addon-wrapping"
-          />
-        </div>
-      </form>
+      <div className="accordion-item mb-4">
+        <h2 className="accordion-header" id="headingOne">
+          <button
+            className="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            {"/" + this.state.data.name}
+          </button>
+        </h2>
+        <form
+          id="collapseOne"
+          className="accordion-collapse collapse show"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionCommand"
+          style={{
+            marginBottom: "20px",
+          }}
+        >
+          {this.renderSpanInput("name", "/", "Command Name")}
+          {this.renderSpanInput("description", "@", "Command Description")}
+        </form>
+      </div>
     );
   }
 }
