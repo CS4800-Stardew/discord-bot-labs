@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-const Sidebar = ({ commands, openTriggerPopup, showCommand }) => {
+const Sidebar = ({
+  title,
+  buttonText,
+  buttonEffect,
+  items,
+  onItemClick,
+  prefix = "",
+  tempName = "temp",
+}) => {
   return (
     <nav id="sidebar">
       <div className="sidebar-header">
-        <h3>Commands</h3>
+        <h3>{title}</h3>
       </div>
       <ul className="list-unstyled components">
         <li>
@@ -12,23 +20,23 @@ const Sidebar = ({ commands, openTriggerPopup, showCommand }) => {
             type="button"
             id="addCommand"
             className="btn btn-info mb-3"
-            onClick={openTriggerPopup}
+            onClick={buttonEffect}
           >
-            New Command
+            {buttonText}
           </button>
-          {/* {commands.map((formNumber) => (
-            <li key={formNumber}>
+          {items.map((item) => (
+            <li key={item.id}>
               <a
                 href="#/"
                 onClick={() => {
-                  showCommand(formNumber);
+                  onItemClick(item);
                 }}
               >
-                {" "}
-                {formNumber}
+                {prefix}
+                {item.name ? item.name : tempName}
               </a>
             </li>
-          ))} */}
+          ))}
         </li>
       </ul>
     </nav>
