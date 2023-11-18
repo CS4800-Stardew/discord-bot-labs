@@ -5,23 +5,23 @@ import { faBolt } from "@fortawesome/free-solid-svg-icons";
 const TriggerList = ({ onTriggerSelect }) => {
   const [triggers, setTriggers] = useState([
     {
-      effect: "Custom slash command",
+      effect: "Custom Slash Command",
       description: "Create a custom slash command",
     },
     {
-      effect: "User joins server",
+      effect: "User Joins Server",
       description: "Command runs when a user joins the server",
     },
     {
-      effect: "User leaves server",
+      effect: "User Leaves Server",
       description: "Command runs when a user leaves the server",
     },
     {
-      effect: "New channel message",
+      effect: "New Channel Message",
       description: "Command runs when message is sent in a channel",
     },
     {
-      effect: "bad word message",
+      effect: "Bad Word Message",
       description: "Command runs when message contains a bad word",
     },
   ]);
@@ -30,7 +30,10 @@ const TriggerList = ({ onTriggerSelect }) => {
     <div className="list-container">
       {triggers.map((trigger) => (
         <div className="list-item-wrapper" key={trigger.effect}>
-          <button className="use-trigger-btn" onClick={onTriggerSelect}>
+          <button
+            className="use-trigger-btn"
+            onClick={() => onTriggerSelect(trigger.effect)}
+          >
             <FontAwesomeIcon icon={faBolt} />
             Use Trigger
           </button>

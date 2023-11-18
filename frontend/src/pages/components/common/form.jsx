@@ -6,6 +6,7 @@ import Joi from "joi-browser"; // library for data validation
 import Input from "./input";
 import Select from "./select";
 import SpanInput from "./spanInput";
+import Switch from "./switch";
 
 class Form extends Component {
   state = {
@@ -53,6 +54,14 @@ class Form extends Component {
     this.setState({ data, errors }); // update state with new data and errors
   };
 
+  // handle switch field value changes
+  handleSwitchChange = ({ currentTarget: input }) => {
+    const errors = { ...this.state.errors }; // clone current errors object
+    const data = { ...this.state.data };
+    data[input.name] = input.checked;
+    this.setState({ data, errors });
+  };
+
   // render submit button with conditional disabling
   renderButton(label) {
     return (
@@ -92,6 +101,8 @@ class Form extends Component {
     );
   }
 
+  // render span input field with specified type (default is "text")
+  // span is in replacement of the label and in front of the input
   renderSpanInput(name, label, placeholder, type = "text") {
     const { data, errors } = this.state;
     return (
@@ -102,6 +113,20 @@ class Form extends Component {
         value={data[name]}
         label={label}
         onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
+
+  //render switch component
+  renderSwitch(name, label) {
+    const { data, errors } = this.state;
+    return (
+      <Switch
+        name={name}
+        label={label}
+        checked={data[name]}
+        onChange={this.handleSwitchChange}
         error={errors[name]}
       />
     );

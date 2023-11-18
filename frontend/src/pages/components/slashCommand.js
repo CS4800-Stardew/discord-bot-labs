@@ -12,6 +12,7 @@ class SlashCommand extends Form {
     };
   }
 
+  // Joi schema for validating command name and description
   schema = {
     name: Joi.string().min(1).label("Command Name"),
     description: Joi.string().label("Command Description"),
@@ -26,12 +27,13 @@ class SlashCommand extends Form {
       });
     }
 
-    // Check if the data state has changed
+    // notify parent component when the data state changes
     if (prevState.data !== this.state.data) {
       this.props.onDataChange(this.state.data);
     }
   }
 
+  // display form for editing command details
   render() {
     return (
       <div className="accordion-item mb-4">

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 import AddAction from "./addAction"; // Import Bootstrap JavaScript
 import SlashCommand from "./slashCommand";
+import TopBar from "./topBar";
 
 const BotForm = ({ cmd, setCmd }) => {
   const handleCmdDataChange = (updatedData) => {
@@ -14,6 +16,7 @@ const BotForm = ({ cmd, setCmd }) => {
 
   return (
     <div className="form-container p-4">
+      <TopBar cmd={cmd} onDataChange={handleCmdDataChange} />
       <div className="accordion" id="accordionCommand">
         <SlashCommand cmd={cmd} onDataChange={handleCmdDataChange} />
 
