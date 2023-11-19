@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import auth from "../services/authService";
+import secrets from "../dbl-config.json";
 import Card from "./components/common/card";
 
 const Dashboard = () => {
@@ -28,7 +29,7 @@ const Dashboard = () => {
         // parse JSON response from API
         const response = await guilds.json();
 
-        // If response is an array, update  state with the guild info
+        // If response is an array, update state with the guild info
         if (Array.isArray(response)) {
           setGuildsInfo(response);
         } else {
@@ -44,8 +45,16 @@ const Dashboard = () => {
     fetchData(); // Call fetchData function when component mounts
   }, []);
 
-  // event handler for clicking on a guild card (currently empty)
-  const handleClick = (guildInfo) => {};
+  // event handler for clicking on a guild card
+  const handleClick = (guildInfo) => {
+    console.log(guildInfo.id);
+    window.open(
+      secrets.botAuthPart1 +
+        guildInfo.id +
+        secrets.botAuthPart2 +
+        "&redirect_uri=http://localhost:5000/api/discord-info/callback"
+    );
+  };
 
   return (
     <div className="dashboard-wrapper">
@@ -57,7 +66,7 @@ const Dashboard = () => {
             img={`https://cdn.discordapp.com/icons/${guildInfo.id}/${guildInfo.icon}.png`}
             title={guildInfo.name}
             btntxt={"Add Bot to Server"}
-            onClick={handleClick(guildInfo)}
+            onClick={() => handleClick(guildInfo)}
           />
         ))}
       </div>

@@ -10,6 +10,7 @@ import mongoose from "mongoose";
 import auth from "./routes/auth.js";
 import users from "./routes/users.js";
 import buildBot from "./routes/build-bot.js";
+import discordInfo from "./routes/discord-Info.js";
 
 // enables CORS for allowing cross-origin HTTP requests
 // enables communication between different domains
@@ -23,6 +24,7 @@ export function setRoutes(app) {
   app.use("/api/auth", auth);
   app.use("/api/users", users);
   app.use("/api/build-bot", buildBot);
+  app.use("/api/discord-info", discordInfo);
   app.use(error);
 }
 
