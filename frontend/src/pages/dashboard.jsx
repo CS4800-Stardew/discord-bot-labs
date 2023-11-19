@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
+import ds from "../services/discordService";
 import auth from "../services/authService";
-import secrets from "../dbl-config.json";
 import Card from "./components/common/card";
 
 const Dashboard = () => {
@@ -46,14 +46,15 @@ const Dashboard = () => {
   }, []);
 
   // event handler for clicking on a guild card
-  const handleClick = (guildInfo) => {
-    console.log(guildInfo.id);
+  const handleClick = async (guildInfo) => {
+    const response = await ds.getBotInvite(guildInfo.id);
     window.open(
-      secrets.botAuthPart1 +
-        guildInfo.id +
-        secrets.botAuthPart2 +
-        "&redirect_uri=http://localhost:5000/api/discord-info/callback"
+      response
     );
+    ds.deployBot(guildInfo.id);
+
+    //Will be moved to a polling part later, but it is here for now
+    window.location = "/bot-builder";
   };
 
   return (

@@ -4,13 +4,13 @@ import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import ds from "../services/discordService";
 
 class Login extends Component {
+  // fetches discord login link from backend and redirects to said link
   handleDiscordLogin = async () => {
     try {
       const response = await ds.getDiscordLoginLink();
-      console.log(response);
-      window.location = response.data;
+      window.location = response;
     } catch (error) {
-      // Handle errors
+      // handle errors
       console.error("Error logging in with Discord:", error);
     }
   };
