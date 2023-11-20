@@ -7,7 +7,6 @@ const Dropdown = ({ name, label, options, error, ...rest }) => {
         {label}
       </label>
       <select {...rest} name={name} id={name} className="form-control">
-        <option value="">Select...</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

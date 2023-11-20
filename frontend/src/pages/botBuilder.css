@@ -59,7 +59,7 @@
     margin-right: auto;
   }
 
-  /* Form Inputs */
+/* Form Inputs */
   .form-spacing{
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -76,4 +76,13 @@
 
   .form-label{
     text-align: left;
+  }
+
+/* Accordion */
+  .accordion-body{
+    padding: 0 !important;
+  }
+  
+  .flow-arrow{
+    color: #a7a9af;
   }

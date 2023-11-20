@@ -8,6 +8,8 @@ import Select from "./select";
 import SpanInput from "./spanInput";
 import Switch from "./switch";
 import Dropdown from "./dropdown";
+import Textarea from "./textarea";
+import SpanTextarea from "./spanTextarea";
 
 class Form extends Component {
   state = {
@@ -116,6 +118,37 @@ class Form extends Component {
     return (
       <SpanInput
         type={type}
+        name={name}
+        placeholder={placeholder}
+        value={data[name]}
+        label={label}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
+
+  // render input field with specified type (default is "text")
+  renderTextarea(name, label, rows = 5) {
+    const { data, errors } = this.state;
+    return (
+      <Textarea
+        rows={rows}
+        name={name}
+        value={data[name]}
+        label={label}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
+
+  // render input field with specified type (default is "text")
+  renderSpanTextarea(name, label, rows = 5, placeholder = "placeholder") {
+    const { data, errors } = this.state;
+    return (
+      <SpanTextarea
+        rows={rows}
         name={name}
         placeholder={placeholder}
         value={data[name]}

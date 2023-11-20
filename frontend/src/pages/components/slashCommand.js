@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Joi from "joi-browser";
+import Accordion from "react-bootstrap/Accordion";
 
 import Form from "./common/form";
 
@@ -36,32 +37,18 @@ class SlashCommand extends Form {
   // display form for editing command details
   render() {
     return (
-      <div className="accordion-item mb-4">
-        <h2 className="accordion-header" id="headingOne">
-          <button
-            className="accordion-button"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseOne"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-          >
-            {"/" + this.state.data.name}
-          </button>
-        </h2>
-        <div
-          id="collapseOne"
-          className="accordion-collapse collapse show"
-          aria-labelledby="headingOne"
-          data-bs-parent="#accordionCommand"
-          style={{
-            marginBottom: "20px",
-          }}
-        >
+      <Accordion.Item eventKey="9999">
+        <Accordion.Header>{"/" + this.state.data.name}</Accordion.Header>
+        <Accordion.Body>
           {this.renderSpanInput("name", "/", "Command Name")}
-          {this.renderSpanInput("description", "@", "Command Description")}
-        </div>
-      </div>
+          {this.renderSpanTextarea(
+            "description",
+            "@",
+            1,
+            "Command Description"
+          )}
+        </Accordion.Body>
+      </Accordion.Item>
     );
   }
 }

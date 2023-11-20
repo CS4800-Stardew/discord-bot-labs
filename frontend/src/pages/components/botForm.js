@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Accordion from "react-bootstrap/Accordion";
 
 import SlashCommand from "./slashCommand";
 import TopBar from "./topBar";
 import Popup from "./common/popup";
 import ReplyToSlashCommand from "./replyToSlashChannel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const BotForm = ({ cmd, setCmd }) => {
   const [actionPopup, setActionPopup] = useState(false);
@@ -92,8 +93,9 @@ const BotForm = ({ cmd, setCmd }) => {
   return (
     <div className="form-container p-4">
       <TopBar cmd={cmd} onDataChange={handleCmdDataChange} />
-      <div className="accordion" id="accordionCommand">
+      <Accordion defaultActiveKey={["9999"]}>
         <SlashCommand cmd={cmd} onDataChange={handleCmdDataChange} />
+        <FontAwesomeIcon className="flow-arrow" icon={faArrowDown} size="2xl" />
         {cmd.actions.map((action, index) => {
           switch (action.effect) {
             case "Reply to Slash Command":
@@ -113,36 +115,36 @@ const BotForm = ({ cmd, setCmd }) => {
               return null; // Render nothing if action doesn't match
           }
         })}
-        <button
-          type="button"
-          id="button"
-          className="btn btn-info mb-3"
-          onClick={() => setActionPopup(true)}
-        >
-          Add Action
-        </button>
-        <Popup trigger={actionPopup} setTrigger={setActionPopup}>
-          <h2 className="popup-list-title">Select From Available Actions</h2>
-          <div className="list-container">
-            {actions.map((action) => (
-              <div className="list-item-wrapper" key={action.effect}>
-                <button
-                  className="use-popup-btn"
-                  onClick={() => handleActionSelect(action.effect)}
-                >
-                  <FontAwesomeIcon icon={faPlus} />
-                  Use Action
-                </button>
-                <div className="action-info-wrapper">
-                  <p className="action-effect popup-info">{action.effect}</p>
-                  <p className="action-desc popup-info">{action.description}</p>
-                </div>
+      </Accordion>
+      <button
+        type="button"
+        id="button"
+        className="btn btn-info mb-3"
+        onClick={() => setActionPopup(true)}
+      >
+        Add Action
+      </button>
+      <Popup trigger={actionPopup} setTrigger={setActionPopup}>
+        <h2 className="popup-list-title">Select From Available Actions</h2>
+        <div className="list-container">
+          {actions.map((action) => (
+            <div className="list-item-wrapper" key={action.effect}>
+              <button
+                className="use-popup-btn"
+                onClick={() => handleActionSelect(action.effect)}
+              >
+                <FontAwesomeIcon icon={faPlus} />
+                Use Action
+              </button>
+              <div className="action-info-wrapper">
+                <p className="action-effect popup-info">{action.effect}</p>
+                <p className="action-desc popup-info">{action.description}</p>
               </div>
-            ))}
-            ;
-          </div>{" "}
-        </Popup>
-      </div>
+            </div>
+          ))}
+          ;
+        </div>{" "}
+      </Popup>
     </div>
   );
 };

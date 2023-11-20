@@ -2,14 +2,14 @@
 
 import React from "react";
 
-const SpanInput = ({ name, label, error, ...rest }) => {
+const SpanTextarea = ({ name, label, error, ...rest }) => {
   // destructure props object
   return (
     <div className="input-group form-spacing">
       <span className="input-group-text" id="addon-wrapping">
         {label}
       </span>
-      <input
+      <textarea
         {...rest} // set additional input properties like 'value', 'onChange', etc.
         name={name}
         id={name}
@@ -22,4 +22,4 @@ const SpanInput = ({ name, label, error, ...rest }) => {
   );
 };
 
-export default SpanInput;
+export default SpanTextarea;

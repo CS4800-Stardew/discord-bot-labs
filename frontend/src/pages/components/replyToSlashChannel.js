@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Joi from "joi-browser";
+import Accordion from "react-bootstrap/Accordion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 import Form from "./common/form";
 
@@ -54,41 +57,22 @@ class ReplyToSlashCommand extends Form {
     }
   }
 
-  // Function to handle toggling the expansion state of an accordion
-  toggleAccordion = () => {
-    this.setState((prevState) => ({
-      expanded: !prevState.expanded, // Invert the current value of expanded
-    }));
-  };
-
   // display form for editing command details
   render() {
     return (
-      <div className="accordion-item mb-4">
-        <h2 className="accordion-header" id="headingOne">
-          <button
-            className="accordion-button"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseOne"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-          >
-            {this.state.data.effect}
-          </button>
-        </h2>
-        <div
-          id="collapseOne"
-          className="accordion-collapse collapse show"
-          aria-labelledby="headingOne"
-          data-bs-parent="#accordionCommand"
-          style={{
-            marginBottom: "20px",
-          }}
-        >
-          {this.renderInput("message", "Message Content")}
-          {this.renderDropdown("privateReply", "Command reply is private?", 0)}
-        </div>
+      <div>
+        <Accordion.Item eventKey={this.state.index}>
+          <Accordion.Header>{this.state.data.effect}</Accordion.Header>
+          <Accordion.Body>
+            {this.renderTextarea("message", "Message Content")}
+            {this.renderDropdown(
+              "privateReply",
+              "Command reply is private?",
+              0
+            )}
+          </Accordion.Body>
+        </Accordion.Item>
+        <FontAwesomeIcon className="flow-arrow" icon={faArrowDown} size="2xl" />
       </div>
     );
   }
