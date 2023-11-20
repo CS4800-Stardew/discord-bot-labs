@@ -1,0 +1,138 @@
+/* Home page */
+.home-container {
+    width: 0 auto !important;
+    max-width: 100vw !important;
+  }
+  
+  .hero-cta-container{
+    text-align: center;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .resources-container{
+    text-align: center;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .about-service-container{
+    text-align: center;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /*General Home page parts */
+  .header-text {
+    text-align: center;
+    color: white;
+  }
+  
+  
+  /* CardArray (for home page) */
+  .card-array-container {
+    background-color: #7289da;
+    padding: 2.5rem;
+    width: 75vw;
+  }
+  
+  .cards-container {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+  }
+  
+  .card-container {
+    width: 31%;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 2.5rem;
+  }
+  
+  .card-title {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .card-description {
+    text-align: left;
+    margin-bottom: 1.875rem;
+  }
+  
+  .card-description li {
+    margin-bottom: 0.3125rem;
+    color: white;
+  }
+  
+  /* Button Component */
+  .button-link {
+    text-decoration: none;
+  }
+  
+  .custom-button {
+    /* Add any additional styling for the button here */
+  }
+  
+  /* Card Component */
+  .card-container {
+    margin-bottom: 1.875rem;
+    background: #7289da;
+  }
+  
+  .card-image {
+    width: 100%;
+    max-width: 18.75rem;
+  }
+  
+  .card-description {
+    margin-top: 1.875rem;
+    color: white;
+    /* Add any additional styling for the card description here */
+  }
+  
+  /* Gallery */
+  .gallery-container {
+    max-width: 75vw;
+    background: #494a4e;
+    padding: 2rem;
+  }
+  
+  .carousel-container {
+    padding: 0.625rem;
+  }
+  
+  .carousel-header {
+    text-align: center;
+    color: white;
+  }
+  
+  /* Landing Screen */
+  .grouped-container {
+    width: 100vw;
+    background: #7289da;
+    padding: 9.375rem;
+  }
+  
+  .title-text {
+    margin-bottom: 2.5rem;
+    color: white;
+  }
+  
+  .logo-image {
+    max-width: 18.75rem;
+    margin-right: 1.25rem;
+  }
+  
+  .subtitle-text {
+    margin-bottom: 2.5rem;
+    color: white;
+  }

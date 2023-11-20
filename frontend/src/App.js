@@ -8,13 +8,12 @@ import StickyFooter from "./pages/components/stickyFooter";
 import Home from "./pages/home";
 import BotBuilder from "./pages/botBuilder";
 import Login from "./pages/login";
-import Auth from "./pages/auth";
+import Auth from "./pages/components/auth";
 import Dashboard from "./pages/dashboard";
 import Tutorial from "./pages/tutorial";
 import GetStarted from "./pages/getStarted";
 import auth from "./services/authService";
 import ProtectedRoute from "./pages/components/common/protectedRoute";
-import BotRepository from "./pages/botRepository";
 import Logout from "./pages/components/logout";
 
 const App = () => {

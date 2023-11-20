@@ -1,0 +1,59 @@
+/* Dashboard */
+.dashboard-wrapper{
+}
+
+.server-list-title{
+  color: white
+}
+
+/* Dashboard Guild Cards */
+.guild-card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    gap: 2rem;
+    justify-content: center;
+    margin-right: 3rem;
+  }
+  
+  .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #7289da;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    width: 16rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 200ms ease-in;
+  }
+  
+  .card-img{
+    height: 12rem;
+    width: 12rem;
+    border-radius: 50%;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-btn{
+    padding: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1rem;
+    border: 2px solid #7289da;
+    background: transparent;
+    color: #7289da;
+    border-radius: 0.2rem;
+    transition: background 200ms ease-in, color 200ms ease-in;
+  }
+  
+  .card-btn:hover{
+    background: #7289da;
+    color: white;
+  }

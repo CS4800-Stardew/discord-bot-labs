@@ -5,8 +5,10 @@ import React from "react";
 const Input = ({ name, label, error, ...rest }) => {
   // destructure props object
   return (
-    <div className="form-group">
-      <label htmlFor={name}>{label}</label>
+    <div className="form-group form-spacing">
+      <label className="form-label" htmlFor={name}>
+        {label}
+      </label>
       <input
         // set additional input properties like 'value', 'onChange', etc.
         {...rest}

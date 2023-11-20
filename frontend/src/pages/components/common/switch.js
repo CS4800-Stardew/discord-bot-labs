@@ -3,7 +3,7 @@ import React from "react";
 
 const Switch = ({ name, label, error, ...rest }) => {
   return (
-    <div className="form-check form-switch">
+    <div className="form-check form-switch form-spacing">
       <input
         {...rest}
         type="checkbox"

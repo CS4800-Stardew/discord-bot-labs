@@ -1,6 +1,6 @@
 import React from "react"; // library to use React Components
 import { Link, NavLink } from "react-router-dom"; // library for dynamic routing
-import "bootstrap/dist/css/bootstrap.css";
+import "./navBar.css";
 
 //Component for website navigation bar
 const NavBar = ({ user }) => {
@@ -20,20 +20,14 @@ const NavBar = ({ user }) => {
           >
             Documentation
           </a>
-          <ul
-            className="dropdown-menu dropdown-menu-dark"
-            aria-labelledby="navbarDarkDropdownMenuLink"
-          >
+          <ul className="dropdown-menu">
             <li>
-              <NavLink className="nav-link dropdown-item ps-3" to="/tutorial">
+              <NavLink className="nav-link dropdown-item" to="/tutorial">
                 Tutorial
               </NavLink>
             </li>
             <li>
-              <NavLink
-                className="nav-link dropdown-item ps-3"
-                to="/get-started"
-              >
+              <NavLink className="nav-link dropdown-item" to="/get-started">
                 Get Started
               </NavLink>
             </li>

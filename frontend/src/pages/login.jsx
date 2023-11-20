@@ -2,6 +2,7 @@ import { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import ds from "../services/discordService";
+import "./login.css";
 
 class Login extends Component {
   // fetches discord login link from backend and redirects to said link

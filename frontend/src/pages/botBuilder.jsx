@@ -1,16 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid"; // Import the v4 uuid method
 import "bootstrap/dist/css/bootstrap.css";
+import "./botBuilder.css";
 
 import Sidebar from "./components/common/sidebar";
 import Popup from "./components/common/popup";
-import TriggerList from "./components/triggerList";
 import BotForm from "./components/botForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBolt } from "@fortawesome/free-solid-svg-icons";
 
 const BotBuilder = () => {
   const [triggerPopup, setTriggerPopup] = useState(false);
   const [cmds, setCmds] = useState([]);
   const [activeCmd, setActiveCmd] = useState(null);
+
+  const triggers = [
+    {
+      effect: "Custom Slash Command",
+      description: "Create a custom slash command",
+    },
+    {
+      effect: "User Joins Server",
+      description: "Command runs when a user joins the server",
+    },
+    {
+      effect: "User Leaves Server",
+      description: "Command runs when a user leaves the server",
+    },
+    {
+      effect: "New Channel Message",
+      description: "Command runs when message is sent in a channel",
+    },
+    {
+      effect: "Bad Word Message",
+      description: "Command runs when message contains a bad word",
+    },
+  ];
 
   // handle selection of trigger and add it as new cmd
   const handleTriggerSelect = (effect) => {
@@ -22,7 +47,6 @@ const BotBuilder = () => {
       description: "",
       actions: [],
       deploy: false,
-      options: [1, 2, 3],
     };
     // Add the new command to the list of commands
     setCmds([...cmds, cmdData]);
@@ -55,9 +79,24 @@ const BotBuilder = () => {
         {activeCmd && <BotForm cmd={activeCmd} setCmd={setActiveCmd} />}
         {/* Popup for selecting triggers */}
         <Popup trigger={triggerPopup} setTrigger={setTriggerPopup}>
-          <h2 className="trigger-list-title">Select From Available Triggers</h2>
+          <h2 className="popup-list-title">Select From Available Triggers</h2>
           {/* Component for displaying available triggers */}
-          <TriggerList onTriggerSelect={handleTriggerSelect} />
+          <div className="list-container">
+            {triggers.map((trigger) => (
+              <div className="list-item-wrapper" key={trigger.effect}>
+                <button
+                  className="use-popup-btn"
+                  onClick={() => handleTriggerSelect(trigger.effect)}
+                >
+                  <FontAwesomeIcon icon={faBolt} />
+                  Use Trigger
+                </button>
+                <p className="trigger-effect popup-info">{trigger.effect}</p>
+                <p className="trigger-desc popup-info">{trigger.description}</p>
+              </div>
+            ))}
+            ;
+          </div>
         </Popup>
       </div>
     </div>

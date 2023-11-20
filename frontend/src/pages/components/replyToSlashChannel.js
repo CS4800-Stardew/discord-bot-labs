@@ -3,35 +3,63 @@ import Joi from "joi-browser";
 
 import Form from "./common/form";
 
-class SlashCommand extends Form {
+class ReplyToSlashCommand extends Form {
   constructor(props) {
     super(props);
     this.state = {
-      data: props.cmd,
+      data: props.action,
       errors: {},
+      cmdId: props.cmdId,
+      index: props.index,
+      expanded: true,
+      optionsList: [
+        [
+          {
+            label: "true",
+            value: true,
+          },
+          {
+            label: "false",
+            value: false,
+          },
+        ],
+        [],
+      ],
     };
   }
 
   // Joi schema for validating command name and description
   schema = {
-    name: Joi.string().min(1).label("Command Name"),
-    description: Joi.string().label("Command Description"),
+    message: Joi.string().min(1).label("message"),
   };
 
   componentDidUpdate(prevProps, prevState) {
-    // Check if the props.cmd has changed
-    if (prevProps.cmd !== this.props.cmd) {
+    //Check if the props.action has changed
+    if (prevProps.action !== this.props.action) {
       this.setState({
-        data: this.props.cmd,
+        data: this.props.action,
         errors: {},
+        cmdId: this.props.cmdId,
+        index: this.props.index,
       });
     }
 
     // notify parent component when the data state changes
     if (prevState.data !== this.state.data) {
-      this.props.onDataChange(this.state.data);
+      this.props.onDataChange(
+        this.state.cmdId,
+        this.state.data,
+        this.state.index
+      );
     }
   }
+
+  // Function to handle toggling the expansion state of an accordion
+  toggleAccordion = () => {
+    this.setState((prevState) => ({
+      expanded: !prevState.expanded, // Invert the current value of expanded
+    }));
+  };
 
   // display form for editing command details
   render() {
@@ -46,7 +74,7 @@ class SlashCommand extends Form {
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            {"/" + this.state.data.name}
+            {this.state.data.effect}
           </button>
         </h2>
         <div
@@ -58,12 +86,12 @@ class SlashCommand extends Form {
             marginBottom: "20px",
           }}
         >
-          {this.renderSpanInput("name", "/", "Command Name")}
-          {this.renderSpanInput("description", "@", "Command Description")}
+          {this.renderInput("message", "Message Content")}
+          {this.renderDropdown("privateReply", "Command reply is private?", 0)}
         </div>
       </div>
     );
   }
 }
 
-export default SlashCommand;
+export default ReplyToSlashCommand;

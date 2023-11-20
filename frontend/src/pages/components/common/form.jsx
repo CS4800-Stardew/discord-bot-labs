@@ -7,11 +7,13 @@ import Input from "./input";
 import Select from "./select";
 import SpanInput from "./spanInput";
 import Switch from "./switch";
+import Dropdown from "./dropdown";
 
 class Form extends Component {
   state = {
     data: {}, // object to hold form data
     errors: {}, // object to hold validation errors
+    optionsList: [], // array of arrays that holds the different options for different dropdowns
   };
 
   // validate entire form using Joi
@@ -56,10 +58,16 @@ class Form extends Component {
 
   // handle switch field value changes
   handleSwitchChange = ({ currentTarget: input }) => {
-    const errors = { ...this.state.errors }; // clone current errors object
     const data = { ...this.state.data };
     data[input.name] = input.checked;
-    this.setState({ data, errors });
+    this.setState({ data });
+  };
+
+  // handle dropdown field value changes
+  handleDropdownChange = ({ currentTarget: input }) => {
+    const data = { ...this.state.data }; // clone current data object
+    data[input.name] = input.value; // update data object with new field value
+    this.setState({ data }); // update state with new data and errors
   };
 
   // render submit button with conditional disabling
@@ -103,7 +111,7 @@ class Form extends Component {
 
   // render span input field with specified type (default is "text")
   // span is in replacement of the label and in front of the input
-  renderSpanInput(name, label, placeholder, type = "text") {
+  renderSpanInput(name, label, placeholder = "placeholder", type = "text") {
     const { data, errors } = this.state;
     return (
       <SpanInput
@@ -127,6 +135,21 @@ class Form extends Component {
         label={label}
         checked={data[name]}
         onChange={this.handleSwitchChange}
+        error={errors[name]}
+      />
+    );
+  }
+
+  // Method to render a dropdown
+  renderDropdown(name, label, whichOptions) {
+    const { data, errors, optionsList } = this.state;
+    return (
+      <Dropdown
+        name={name}
+        label={label}
+        options={optionsList[whichOptions]}
+        value={data[name]}
+        onChange={this.handleDropdownChange}
         error={errors[name]}
       />
     );

@@ -5,7 +5,7 @@ import React from "react";
 const SpanInput = ({ name, label, placeholder, error, ...rest }) => {
   // destructure props object
   return (
-    <div className="input-group my-3 px-5">
+    <div className="input-group form-spacing">
       <span className="input-group-text" id="addon-wrapping">
         {label}
       </span>

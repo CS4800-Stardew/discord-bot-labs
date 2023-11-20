@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import ds from "../services/discordService";
 import auth from "../services/authService";
 import Card from "./components/common/card";
+import "./dashboard.css";
 
 const Dashboard = () => {
   const [guildsInfo, setGuildsInfo] = useState([]); //stores user's guilds info.
@@ -48,9 +49,7 @@ const Dashboard = () => {
   // event handler for clicking on a guild card
   const handleClick = async (guildInfo) => {
     const response = await ds.getBotInvite(guildInfo.id);
-    window.open(
-      response
-    );
+    window.open(response);
     ds.deployBot(guildInfo.id);
 
     //Will be moved to a polling part later, but it is here for now
