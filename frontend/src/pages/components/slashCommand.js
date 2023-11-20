@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import Joi from "joi-browser";
 import Accordion from "react-bootstrap/Accordion";
 
 import Form from "./common/form";
+import Variable from "./variable";
 
 class SlashCommand extends Form {
   constructor(props) {
@@ -34,6 +35,46 @@ class SlashCommand extends Form {
     }
   }
 
+  addVariable() {
+    const newVariable = {
+      type: "",
+      name: "",
+      description: "",
+      required: false,
+    };
+    const updatedVariables = [...this.state.data.variables, newVariable];
+    this.setState({
+      data: {
+        ...this.state.data,
+        variables: updatedVariables,
+      },
+    });
+  }
+
+  removeVariable(index) {
+    const updatedVariables = this.state.data.variables.filter(
+      (_, i) => i !== index
+    );
+
+    this.setState({
+      data: {
+        ...this.state.data,
+        variables: updatedVariables,
+      },
+    });
+  }
+
+  updateVariable(updatedData, index) {
+    let updatedVariables = this.state.data.variables;
+    updatedVariables[index] = updatedData;
+    this.setState({
+      data: {
+        ...this.state.data,
+        variables: updatedVariables,
+      },
+    });
+  }
+
   // display form for editing command details
   render() {
     return (
@@ -47,6 +88,34 @@ class SlashCommand extends Form {
             1,
             "Command Description"
           )}
+          <Accordion>
+            <Accordion.Item>
+              <Accordion.Header>Variables</Accordion.Header>
+              <Accordion.Body>
+                {this.state.data.variables.map((variable, index) => (
+                  <Variable
+                    key={index}
+                    variable={variable}
+                    index={index}
+                    onDataChange={(updatedData) =>
+                      this.updateVariable(updatedData, index)
+                    }
+                    removeVariable={() => this.removeVariable(index)}
+                  />
+                ))}
+                <button
+                  type="button"
+                  id="button"
+                  className="btn btn-info mb-3"
+                  onClick={() => {
+                    this.addVariable();
+                  }}
+                >
+                  Add Variable
+                </button>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         </Accordion.Body>
       </Accordion.Item>
     );

@@ -101,7 +101,7 @@ const BotForm = ({ cmd, setCmd }) => {
             case "Reply to Slash Command":
               return (
                 <ReplyToSlashCommand
-                  key={action.effect}
+                  key={index}
                   action={action}
                   cmdId={cmd.id}
                   index={index}

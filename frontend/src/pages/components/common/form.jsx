@@ -3,11 +3,12 @@
 
 import React, { Component } from "react";
 import Joi from "joi-browser"; // library for data validation
-import Input from "./input";
 import Select from "./select";
+import Input from "./input";
 import SpanInput from "./spanInput";
 import Switch from "./switch";
 import Dropdown from "./dropdown";
+import SpanDropdown from "./spanDropdown";
 import Textarea from "./textarea";
 import SpanTextarea from "./spanTextarea";
 
@@ -128,7 +129,7 @@ class Form extends Component {
     );
   }
 
-  // render input field with specified type (default is "text")
+  // render textarea field with specified type (default is "text")
   renderTextarea(name, label, rows = 5) {
     const { data, errors } = this.state;
     return (
@@ -143,7 +144,7 @@ class Form extends Component {
     );
   }
 
-  // render input field with specified type (default is "text")
+  // render span textarea with specified type (default is "text")
   renderSpanTextarea(name, label, rows = 5, placeholder = "placeholder") {
     const { data, errors } = this.state;
     return (
@@ -173,11 +174,26 @@ class Form extends Component {
     );
   }
 
-  // Method to render a dropdown
+  // render a dropdown
   renderDropdown(name, label, whichOptions) {
     const { data, errors, optionsList } = this.state;
     return (
       <Dropdown
+        name={name}
+        label={label}
+        options={optionsList[whichOptions]}
+        value={data[name]}
+        onChange={this.handleDropdownChange}
+        error={errors[name]}
+      />
+    );
+  }
+
+  // render a span dropdown
+  renderSpanDropdown(name, label, whichOptions) {
+    const { data, errors, optionsList } = this.state;
+    return (
+      <SpanDropdown
         name={name}
         label={label}
         options={optionsList[whichOptions]}

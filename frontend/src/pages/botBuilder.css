@@ -86,3 +86,20 @@
   .flow-arrow{
     color: #a7a9af;
   }
+
+  /* Variable */
+.variable-field-combine{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.delete-variable-button{
+  margin-left: 5rem;
+  margin-right: 3rem;
+  padding: 0.4rem;
+  height: fit-content;
+  background-color: rgb(254, 136, 136);
+  color: white;
+  border-radius: 0.5rem;
+}

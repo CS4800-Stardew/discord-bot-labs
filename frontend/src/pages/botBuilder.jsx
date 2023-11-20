@@ -45,6 +45,7 @@ const BotBuilder = () => {
       id: uuidv4(), // Generate a unique ID for the command
       name: "",
       description: "",
+      variables: [],
       actions: [],
       deploy: false,
     };

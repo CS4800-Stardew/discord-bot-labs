@@ -14,7 +14,7 @@ function Popup(props) {
           className="close-popup-button"
           onClick={() => props.setTrigger(false)}
         >
-          <FontAwesomeIcon icon={faX} />
+          <FontAwesomeIcon icon={faX} size="xl" />
         </button>
         {props.children}
       </div>
