@@ -44,14 +44,23 @@ export function startDiscordBot() {
 
         if (command) {
           // Loop and perform actions
+          let replied = false;
           for (const action of command.actions) {
             console.log("Action:", action);
             switch (action.effect) {
               case "Reply to Slash Command": //can only reply once but will continue to loop
-                await interaction.reply({
-                  content: action.message,
-                  ephemeral: action.privateReply,
-                });
+                if (!replied) {
+                  await interaction.reply({
+                    content: action.message,
+                    ephemeral: action.privateReply,
+                  });
+                  replied = true;
+                } else {
+                  await interaction.followUp({
+                    content: action.message,
+                    ephemeral: action.privateReply,
+                  });
+                }
                 break;
               default: // placeholder command response
                 await interaction.reply(
