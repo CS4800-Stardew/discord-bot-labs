@@ -4,6 +4,11 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Accordion from "react-bootstrap/Accordion";
 
 import SlashCommand from "./slashCommand";
+import SendChannelMessage from "./sendChannelMessage"
+import SendDirectMessage from "./sendDirectMessage"
+import AddRole from "./addRole"
+import RemoveRole from "./removeRole"
+import DeleteMessage from "./deleteMessage"
 import TopBar from "./topBar";
 import Popup from "./common/popup";
 import ReplyToSlashCommand from "./replyToSlashChannel";
@@ -53,6 +58,43 @@ const BotForm = ({ cmd, setCmd, guildId, removeCommand }) => {
         updatedActions.push(actionData);
         break;
       case "Send Channel Message":
+        const channelMsg = {
+          effect: effect,
+          message: "",
+          channelSelected: "#channel"
+        };
+        updatedActions.push(channelMsg);
+        break;
+      case "Send Direct Message":
+        const directMsg = {
+          effect: effect,
+          user: "",
+          message: "",
+        }
+        updatedActions.push(directMsg);
+        break;
+      case "Add Role":
+        const addRole = {
+          effect: effect,
+          member: "",
+          role: "Role 1",
+        }
+        updatedActions.push(addRole);
+        break;
+      case "Remove Role":
+        const removeRole = {
+          effect: effect,
+          member: "",
+          role: "Role 1",
+        }
+        updatedActions.push(removeRole);
+        break;
+      case "Delete Message":
+        const deleteMsg = {
+          effect: effect,
+          message: "",
+        }
+        updatedActions.push(deleteMsg);
         break;
       default:
         return;
@@ -114,8 +156,56 @@ const BotForm = ({ cmd, setCmd, guildId, removeCommand }) => {
                 />
               );
             case "Send Channel Message":
-              return <h1>Send Channel Message</h1>;
-            // Add more cases for other actions
+              return (
+                <SendChannelMessage
+                  key={index}
+                  action={action}
+                  cmdId={cmd.id}
+                  index={index}
+                  onDataChange={handleActionDataChange}
+                />
+              );
+            case "Send Direct Message":
+              return (
+                <SendDirectMessage
+                  key={index}
+                  action={action}
+                  cmdId={cmd.id}
+                  index={index}
+                  onDataChange={handleActionDataChange}
+                />
+              );
+            case "Add Role":
+              return (
+                <AddRole
+                  key={index}
+                  action={action}
+                  cmdId={cmd.id}
+                  index={index}
+                  onDataChange={handleActionDataChange}
+                />
+              );
+            case "Remove Role":
+              return (
+                <RemoveRole
+                  key={index}
+                  action={action}
+                  cmdId={cmd.id}
+                  index={index}
+                  onDataChange={handleActionDataChange}
+                />
+              );
+            case "Delete Message":
+              return (
+                <DeleteMessage
+                  key={index}
+                  action={action}
+                  cmdId={cmd.id}
+                  index={index}
+                  onDataChange={handleActionDataChange}
+                />
+              );
+              // Add more cases for other actions
             default:
               return null; // Render nothing if action doesn't match
           }
