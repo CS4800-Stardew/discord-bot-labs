@@ -126,6 +126,17 @@ const BotForm = ({ cmd, setCmd, guildId, removeCommand }) => {
     }
   };
 
+  const handleExport = async () => {
+    try {
+      const response = await fetch('export');
+      const data = await response.text();
+
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   useEffect(() => {
     // This will trigger whenever `cmd` changes
     console.log("Updated Data:", cmd); // This will show the updated state
@@ -214,10 +225,18 @@ const BotForm = ({ cmd, setCmd, guildId, removeCommand }) => {
       <button
         type="button"
         id="button"
-        className="btn btn-info mb-3"
+        className="btn btn-info mb-3 mx-3"
         onClick={() => setActionPopup(true)}
       >
         Add Action
+      </button>
+      <button
+          type="button"
+          id="button"
+          className="btn btn-info mb-3"
+          onClick={handleExport}
+      >
+        Export
       </button>
       <Popup trigger={actionPopup} setTrigger={setActionPopup}>
         <h2 className="popup-list-title">Select From Available Actions</h2>
