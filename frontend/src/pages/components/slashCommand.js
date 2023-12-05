@@ -106,7 +106,7 @@ class SlashCommand extends Form {
                 <button
                   type="button"
                   id="button"
-                  className="btn btn-info mb-3"
+                  className="var-btn btn btn-info"
                   onClick={() => {
                     this.addVariable();
                   }}

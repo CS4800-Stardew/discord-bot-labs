@@ -78,13 +78,13 @@
     text-align: left;
   }
 
-/* Accordion */
-  .accordion-body{
-    padding: 0 !important;
+  .input-group-text{
+    background-color: rgb(178, 190, 234) !important;
   }
-  
-  .flow-arrow{
-    color: #a7a9af;
+
+  .form-control{
+    background-color: #cee2f0 !important;
+    border: #99aab5 !important;
   }
 
   /* Variable */
@@ -102,4 +102,72 @@
   background-color: rgb(254, 136, 136);
   color: white;
   border-radius: 0.5rem;
+  border: rgb(254, 136, 136);
+}
+
+.var-btn{
+  margin-top: 1rem;
+}
+
+/* TopBar */
+.topbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-right: 2rem;
+  font-size: 1.1rem;
+}
+
+.command-chain{
+  color: rgb(234, 234, 234);
+}
+
+.form-check-input {
+  background-color: rgb(0, 194, 194) !important;
+}
+
+.form-check-label {
+  color: white;
+}
+
+.del-cmd-btn {
+  background-color: rgb(254, 136, 136);
+  color: white;
+  border-radius: 0.5rem;
+  border: rgb(254, 136, 136);
+  padding: 0.5rem;
+  font-size: medium;
+}
+
+/* BotForm */
+.form-container {
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+  background: #4b5057;
+
+  /* Accordion */
+  .accordion-body{
+    padding: 0 !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  .flow-arrow{
+    color: #a7a9af;
+  }
+
+  .accordion-item{
+    background-color: #7289da;
+    border: #8fa3ed
+  }
+  
+  .accordion-button{
+    background-color: #7289da;
+    color: white;
+  }
+
+  .accordion-button:not(.collapsed){
+    background-color: rgb(178, 190, 234);
+  }
 }

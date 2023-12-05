@@ -10,7 +10,7 @@ import ReplyToSlashCommand from "./replyToSlashChannel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
-const BotForm = ({ cmd, setCmd }) => {
+const BotForm = ({ cmd, setCmd, guildId, removeCommand }) => {
   const [actionPopup, setActionPopup] = useState(false);
 
   const actions = [
@@ -92,8 +92,13 @@ const BotForm = ({ cmd, setCmd }) => {
 
   return (
     <div className="form-container p-4">
-      <TopBar cmd={cmd} onDataChange={handleCmdDataChange} />
-      <Accordion defaultActiveKey={["9999"]}>
+      <TopBar
+        cmd={cmd}
+        onDataChange={handleCmdDataChange}
+        guildId={guildId}
+        removeCommand={removeCommand}
+      />
+      <Accordion className="accordion" defaultActiveKey={["9999"]}>
         <SlashCommand cmd={cmd} onDataChange={handleCmdDataChange} />
         <FontAwesomeIcon className="flow-arrow" icon={faArrowDown} size="2xl" />
         {cmd.actions.map((action, index) => {

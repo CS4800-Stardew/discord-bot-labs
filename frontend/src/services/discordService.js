@@ -10,25 +10,77 @@ export async function getDiscordLoginLink() {
 
 // invite bot to server link
 export async function getBotInvite(guildId) {
-  const response = await http.get(apiEndpoint + "/bot-invite", { params: { gId: guildId } });
+  const response = await http.get(apiEndpoint + "/bot-invite", {
+    params: { gId: guildId },
+  });
   return response.data;
 }
 
-// deploy bot sending guildId
-export async function deployBot(guildId) {
-  const response = await http.post(apiEndpoint + "/deploy-bot", {gId: guildId});
+// check if specific guildId has a bot deployed and in the server
+export async function checkBotDeployed(guildsInfo) {
+  const response = await http.get(apiEndpoint + "/check-deployed", {
+    params: { guildsInfo: guildsInfo },
+  });
   return response;
 }
 
-// check if specific guildId has a bot deployed and in the server
-export async function checkBotDeployed(guildId) {
-  const response = await http.get(apiEndpoint + "/check-deployed", { params: { gId: guildId } });
-  return response;
+// gets cmds array data from db
+export async function getCommands(guildId) {
+  const response = await http.get(apiEndpoint + "/get-commands", {
+    params: { gId: guildId },
+  });
+  return response.data;
+}
+
+// saves/overwrites cmds array to db
+export function saveCommands(guildId, commands) {
+  return http.patch(apiEndpoint + "/save-commands", {
+    gId: guildId,
+    cmds: commands,
+  });
+}
+
+//deploys slashcommand to bot
+export function deployCommand(guildId, commandName, description) {
+  return http.patch(apiEndpoint + "/deploy-command", {
+    gId: guildId,
+    name: commandName,
+    desc: description,
+  });
+}
+
+//deactivates slashcommand from bot
+export function deactivateCommand(guildId, commandName) {
+  return http.patch(apiEndpoint + "/deactivate-command", {
+    gId: guildId,
+    name: commandName,
+  });
+}
+
+//set guildInfo into local storage
+export function setActiveGuildData(guildInfo) {
+  localStorage.setItem("gInfo", guildInfo);
+}
+
+//get guildInfo from local storage
+export function getActiveGuildData() {
+  return localStorage.getItem("gInfo");
+}
+
+//remove guildInfo from local storage
+export function removeActiveGuildData() {
+  localStorage.removeItem("gInfo");
 }
 
 export default {
   getDiscordLoginLink,
   getBotInvite,
-  deployBot,
-  checkBotDeployed
+  checkBotDeployed,
+  getCommands,
+  saveCommands,
+  deployCommand,
+  deactivateCommand,
+  setActiveGuildData,
+  getActiveGuildData,
+  removeActiveGuildData,
 };

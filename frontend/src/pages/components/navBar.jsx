@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom"; // library for dynamic routing
 import "./navBar.css";
 
 //Component for website navigation bar
-const NavBar = ({ user }) => {
+const NavBar = ({ user, selectedGuild }) => {
   return (
     <nav className="navbar">
       <Link className="navbar-title" to="/">
@@ -33,9 +33,13 @@ const NavBar = ({ user }) => {
             </li>
           </ul>
         </li>
-        <NavLink className="nav-link" to="/bot-builder">
-          Bot Builder
-        </NavLink>
+        {selectedGuild && (
+          <React.Fragment>
+            <NavLink className="nav-link" to="/bot-builder">
+              Bot Builder
+            </NavLink>
+          </React.Fragment>
+        )}
         {!user && (
           // Display these links if the user is not logged in
           <React.Fragment>

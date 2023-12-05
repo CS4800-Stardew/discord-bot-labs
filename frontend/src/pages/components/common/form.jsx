@@ -74,9 +74,9 @@ class Form extends Component {
   };
 
   // render submit button with conditional disabling
-  renderButton(label) {
+  renderButton(label, onClick = this.handleSubmit, className) {
     return (
-      <button disabled={this.validate()} className="btn btn-primary">
+      <button className={className} onClick={onClick}>
         {label}
       </button>
     );
@@ -161,14 +161,14 @@ class Form extends Component {
   }
 
   //render switch component
-  renderSwitch(name, label) {
+  renderSwitch(name, label, handleSwitch = this.handleSwitchChange) {
     const { data, errors } = this.state;
     return (
       <Switch
         name={name}
         label={label}
         checked={data[name]}
-        onChange={this.handleSwitchChange}
+        onChange={handleSwitch}
         error={errors[name]}
       />
     );

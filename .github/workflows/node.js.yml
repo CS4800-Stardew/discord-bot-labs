@@ -45,7 +45,7 @@ jobs:
       - run: |
           cd frontend
           cd src
-          cat <<< '{ "axiosBaseURL": "${{ secrets.AXIOSBASEURL }}", "discordLoginLink": "${{ secrets.DISCORDLOGINLINK }}" }' > dbl-config.json
+          cat <<< '{ "axiosBaseURL": "${{ secrets.AXIOSBASEURL }}", "webSocketURL": "${{ secrets.WEBSOCKETURL }}" }' > dbl-config.json
           cd ..
           npm install
           CI=false npm run build
@@ -82,7 +82,7 @@ jobs:
             killall node
             cd backend
             cd config
-            cat <<< '{ "jwtPrivateKey": "'${{ secrets.JWTPRIVATEKEY }}'", "db": "'${{ secrets.DB }}'", "port": "3900", "requiresAuth": true }' > default.json
+            cat <<< '{ "jwtPrivateKey": "${{ secrets.JWTPRIVATEKEY }}", "db": "${{ secrets.DB }}", "port": "3900", "discordLoginLink": "${{ secrets.DISCORDLOGINLINK }}", "discordBotInvite": "${{ secrets.DISCORDBOTINVITE }}", "discordBotToken": "${{ secrets.DISCORDBOTTOKEN }}"}' > default.json
             cd ..
             npm install
             nohup nodemon start > nohup.out 2> nohup.err < /dev/null &

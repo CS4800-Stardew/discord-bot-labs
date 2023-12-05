@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Joi from "joi-browser";
+import ds from "../../services/discordService";
 
 import Form from "./common/form";
 
@@ -32,14 +33,52 @@ class TopBar extends Form {
     }
   }
 
+  // handle switch field value changes
+  handleSwitch = ({ currentTarget: input }) => {
+    try {
+      const data = { ...this.state.data };
+      data[input.name] = input.checked;
+      if (input.checked) {
+        //deploys command if true
+        //should check if bot is deployable state later(WIP)
+        ds.deployCommand(this.props.guildId, data.name, data.description);
+        this.setState({ data });
+      } else {
+        //deactivates command if false
+        ds.deactivateCommand(this.props.guildId, data.name);
+        this.setState({ data });
+      }
+    } catch (error) {
+      input.checked = !input.checked;
+      console.log("error: ", error);
+    }
+  };
+
+  handleDelete = () => {
+    try {
+      const removed = ds.deactivateCommand(
+        this.props.guildId,
+        this.state.data.name
+      );
+      this.props.removeCommand();
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
   // display form for editing command details
   render() {
     return (
-      <div className="d-flex justify-content-between align-items-center">
-        <span>
+      <div className="topbar">
+        <span className="command-chain">
           Command Type {">"} {this.state.data.trigger.toString()}
         </span>
-        <form>{this.renderSwitch("deploy", "Deploy")}</form>
+        {this.renderSwitch("deploy", "Deploy", this.handleSwitch)}
+        {this.renderButton(
+          "Delete Command",
+          () => this.handleDelete(),
+          "del-cmd-btn"
+        )}
       </div>
     );
   }
