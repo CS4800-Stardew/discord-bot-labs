@@ -42,7 +42,6 @@ export function startDiscordBot() {
         const guildBot = await GuildBot.findOne({ gId: guildId });
         const command = guildBot.cmds.find((cmd) => cmd.name === commandName);
 
-        console.log("Interaction Create:", command);
         if (command) {
           // Loop and perform actions
           for (const action of command.actions) {

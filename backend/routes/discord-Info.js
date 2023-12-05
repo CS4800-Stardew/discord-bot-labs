@@ -51,7 +51,7 @@ router.patch("/save-commands", async (req, res) => {
 //should fix later via discord-bot.js with client.on(ready)
 router.patch("/deploy-command", async (req, res) => {
   const { gId, name, desc } = req.body;
-  console.log("This is It: ", gId, name, desc);
+  console.log("Command Deployed: ", gId, name, desc);
   try {
     createSlashCommand(gId, name, desc);
   } catch (error) {

@@ -69,7 +69,16 @@ class Form extends Component {
   // handle dropdown field value changes
   handleDropdownChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data }; // clone current data object
-    data[input.name] = input.value; // update data object with new field value
+    let originalValue;
+    if (input.value === "true" || input.value === "false") {
+      originalValue = input.value === "true"; // Convert back to boolean
+    } else if (!isNaN(input.value)) {
+      originalValue = Number(input.value); // Convert to number if it's a number string
+    } else {
+      // It's not a boolean or number, so keep it as a string
+      originalValue = input.value;
+    }
+    data[input.name] = originalValue; // update data object with new field value
     this.setState({ data }); // update state with new data and errors
   };
 
